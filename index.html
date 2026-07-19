@@ -234,8 +234,8 @@ textarea{min-height:92px;resize:vertical}
    <div class="field" style="margin-top:18px"><label>其他備註</label><textarea id="notes" placeholder="特殊需求、資料不詳或希望廟方協助確認的內容"></textarea></div>
 
    <div class="summary-box">
-    <div class="summary-row"><div><div>目前登記金額</div><div style="font-size:13px;color:#d8cbd9">送出前請再次核對資料</div></div><div class="total" id="totalText">NT$0</div></div>
-    <div class="actions"><button class="preview" onclick="showPreview()">預覽報名內容</button><button class="copy" onclick="copyText()">複製完整報名資料</button><a class="line" href="https://lin.ee/u1LZ3VU" target="_blank" rel="noopener">開啟官方LINE</a></div>
+    <div class="summary-row"><div><div>目前登記金額</div><div style="font-size:13px;color:#d8cbd9">按一次即可複製內容並開啟LINE</div></div><div class="total" id="totalText">NT$0</div></div>
+    <div class="actions"><button class="preview" onclick="showPreview()">預覽報名內容</button><button class="line" onclick="copyAndOpenLine()">複製資料並開啟官方LINE</button></div>
    </div>
    <pre class="preview-box" id="previewBox"></pre>
   </div>
@@ -248,7 +248,7 @@ textarea{min-height:92px;resize:vertical}
   <details><summary>為什麼資料一定要填農曆年月日與時辰？</summary><p>廟方依傳統科儀整理疏文與名冊時，會使用農曆生辰資料辨識登記對象。請盡量完整填寫；時辰不清楚可先填「不詳」，再由廟方協助確認。</p></details>
   <details><summary>不確定自己需要報哪一項怎麼辦？</summary><p>想為自己祈福可考慮因果普渡；想專名追思已故親人可選超薦祖先；不清楚歷代祖先姓名、希望整體迴向家族先祖，可選九玄七祖。仍不確定時，將需求傳給官方LINE詢問即可。</p></details>
   <details><summary>自由護持一定要捐嗎？</summary><p>不一定。自由護持完全隨喜、自願、量力而為，不影響其他登記項目。真誠善念比金額更重要，請勿勉強。</p></details>
-  <details><summary>填完表單就算完成報名嗎？</summary><p>請先預覽並複製完整資料，再開啟官方LINE貼上傳送。待廟方確認內容與繳費方式後，才算完成報名。</p></details>
+  <details><summary>填完表單就算完成報名嗎？</summary><p>填寫完成後，按「複製資料並開啟官方LINE」，系統會先複製完整內容，再直接跳轉官方LINE；進入聊天室後只要長按輸入框貼上並送出。待廟方確認內容與繳費方式後，才算完成報名。</p></details>
  </div>
 </section>
 
@@ -314,9 +314,36 @@ function buildText(){
  return l.join('\n');
 }
 function showPreview(){previewBox.textContent=buildText();previewBox.style.display='block';previewBox.scrollIntoView({behavior:'smooth',block:'center'})}
-async function copyText(){
- if(!contactName.value.trim()||!phone.value.trim()){alert('請先填寫聯絡人姓名與電話。');return}
- const t=buildText();try{await navigator.clipboard.writeText(t);alert('已複製完整報名資料，請開啟官方LINE貼上傳送。')}catch(e){showPreview();alert('瀏覽器無法自動複製，已顯示預覽內容，請長按複製。')}
+async function copyAndOpenLine(){
+ if(!contactName.value.trim()||!phone.value.trim()){
+  alert('請先填寫聯絡人姓名與電話。');
+  return;
+ }
+ const text=buildText();
+ let copied=false;
+ try{
+  await navigator.clipboard.writeText(text);
+  copied=true;
+ }catch(err){
+  const area=document.createElement('textarea');
+  area.value=text;
+  area.setAttribute('readonly','');
+  area.style.position='fixed';
+  area.style.opacity='0';
+  document.body.appendChild(area);
+  area.select();
+  area.setSelectionRange(0,area.value.length);
+  try{copied=document.execCommand('copy')}catch(e){copied=false}
+  area.remove();
+ }
+ if(!copied){
+  previewBox.textContent=text;
+  previewBox.style.display='block';
+  alert('手機瀏覽器未允許自動複製，已顯示完整內容，請長按複製後再貼到LINE。');
+  return;
+ }
+ // 在同一次點擊流程中直接跳轉，iPhone Safari 較不容易阻擋。
+ window.location.href='https://lin.ee/u1LZ3VU';
 }
 function jumpService(s){document.querySelector(`[data-service="${s}"]`).open=true;document.querySelector(`[data-service="${s}"]`).scrollIntoView({behavior:'smooth',block:'center'})}
 

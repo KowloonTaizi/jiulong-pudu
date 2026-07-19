@@ -1,455 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#321044">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2a0b3b">
 <title>混元九龍殿｜中元普渡報名</title>
 <style>
 :root{
-  --p950:#1c0928;--p900:#321044;--p800:#4b176f;--p700:#6d2d98;
-  --p100:#f4ebf8;--gold:#d5aa4d;--gold2:#f2dda1;--cream:#fffaf1;
-  --ink:#2c2330;--muted:#756c79;--line:#e3d7e7;--danger:#b42318;
-  --ok:#16794c;--shadow:0 18px 55px rgba(47,17,60,.14)
+ --bg:#fffaf2;--ink:#2d2230;--muted:#786f7c;--purple:#542075;--deep:#260b36;
+ --light:#f5ecf9;--gold:#d5aa50;--gold2:#f1dda5;--line:#e5d9e8;--danger:#b42318;
+ --shadow:0 18px 52px rgba(45,15,59,.14)
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;
-  color:var(--ink);background:linear-gradient(180deg,#f5edf8 0,#fffaf2 100%);
-}
-button,input,select,textarea{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-.hero{
-  min-height:590px;padding:56px 22px 80px;display:grid;place-items:center;align-content:center;gap:14px;
-  text-align:center;color:#fff;position:relative;overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 18%,rgba(196,126,237,.24),transparent 22rem),
-    linear-gradient(160deg,#1e092a 0,#47145f 58%,#2a0c38 100%);
-}
-.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(242,221,161,.2);border-radius:50%}
-.hero:before{width:270px;height:270px;left:-130px;top:-90px}
-.hero:after{width:330px;height:330px;right:-170px;bottom:-140px}
-.logo{
-  width:124px;height:124px;border-radius:50%;display:grid;place-items:center;
-  border:3px double var(--gold2);box-shadow:inset 0 0 0 8px rgba(255,255,255,.04),0 0 32px rgba(242,221,161,.18);
-  color:var(--gold2);font-family:"Noto Serif TC",serif;font-weight:900;font-size:25px;line-height:1.1;letter-spacing:3px;
-}
-.eyebrow,.section-head p{margin:0;font-size:12px;font-weight:900;letter-spacing:.18em}
-.eyebrow{color:var(--gold2)}
-.hero h1{margin:0;font-family:"Noto Serif TC",serif;font-size:clamp(38px,9vw,62px);line-height:1.18}
-.hero h1 span{color:var(--gold2)}
-.hero-copy{max-width:620px;margin:0;color:rgba(255,255,255,.82);line-height:1.8}
-.btn{
-  border:0;border-radius:14px;min-height:50px;padding:0 21px;font-weight:900;cursor:pointer;
-  display:inline-grid;place-items:center;text-decoration:none
-}
-.btn-gold{color:#2a172b;background:linear-gradient(135deg,#f5dfa0,#c9973d);box-shadow:0 10px 26px rgba(213,170,77,.25)}
-.btn-light{color:var(--p800);background:#fff;border:1px solid var(--line)}
-.btn-danger{color:var(--danger);background:#fff;border:1px solid #efc8c4}
-.btn-full{width:100%}
-main{width:min(100% - 18px,980px);margin:-34px auto 58px;position:relative;z-index:3}
-.panel{background:rgba(255,255,255,.95);border:1px solid rgba(109,45,152,.1);border-radius:24px;padding:26px;margin-bottom:20px;box-shadow:var(--shadow)}
-.section-head{margin-bottom:20px}
-.section-head p{color:var(--p700)}
-.section-head h2{margin:4px 0 0;font-family:"Noto Serif TC",serif;font-size:29px}
-.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.guide{padding:18px;border-radius:17px;border:1px solid var(--line);background:linear-gradient(180deg,#fbf8fc,#fffdf8)}
-.guide b{color:var(--gold);font-size:13px}.guide h3{margin:8px 0 5px;font-size:17px}.guide p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
-.accordion{display:grid;gap:10px}
-.accordion details{border:1px solid var(--line);border-radius:15px;padding:0 15px;background:#fff}
-.accordion summary{padding:16px 0;font-weight:900;cursor:pointer;list-style:none}
-.accordion summary::-webkit-details-marker{display:none}
-.accordion summary span{float:right;color:var(--p700);font-size:12px}
-.accordion p{margin:0;padding:0 0 16px;color:var(--muted);font-size:13px;line-height:1.7}
-form{display:grid;gap:17px}
-fieldset{margin:0;padding:19px;border:1px solid var(--line);border-radius:18px;background:#fff}
-legend{padding:0 9px;font-weight:900;color:var(--p800)}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.field{display:grid;gap:7px}
-.field span{font-weight:800;font-size:14px}
-.field b{color:var(--danger)}
-.field small,.note{color:var(--muted);font-size:12px;line-height:1.55}
-input,select,textarea{width:100%;border:1px solid #d8cbdc;border-radius:12px;padding:13px 14px;background:#fff;color:var(--ink);outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--p700);box-shadow:0 0 0 3px rgba(109,45,152,.12)}
-.item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.item-check{display:flex;gap:11px;align-items:center;min-height:60px;padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer}
-.item-check input{width:21px;height:21px;accent-color:var(--p700)}
-.item-check strong,.item-check small{display:block}.item-check small{color:var(--muted);font-size:11px}
-.item-check.active{background:var(--p100);border-color:var(--p700)}
-.section-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
-.section-title{padding:16px 17px;background:linear-gradient(135deg,var(--p900),var(--p700));color:#fff}
-.section-title h3{margin:0;font-size:18px}.section-title p{margin:4px 0 0;font-size:12px;opacity:.82}
-.entries{padding:15px;display:grid;gap:13px}
-.entry{padding:16px;border:1px solid #e6dce9;border-radius:15px;background:#fbf8fc}
-.entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.entry-head strong{color:var(--p800)}
-.remove{border:0;background:transparent;color:var(--danger);font-weight:900;cursor:pointer}
-.add{margin:0 15px 15px;width:calc(100% - 30px);min-height:44px;border:1px dashed var(--p700);border-radius:12px;background:#fff;color:var(--p800);font-weight:900;cursor:pointer}
-.qty-row{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center}
-.qty-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:20px;cursor:pointer}
-.qty-input{width:74px;text-align:center;font-weight:900}
-.sticky-summary{position:sticky;bottom:8px;z-index:6;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px 17px;border-radius:17px;background:rgba(40,12,55,.96);color:#fff;box-shadow:0 14px 35px rgba(31,9,43,.3)}
-.sticky-summary div:last-child{text-align:right}.sticky-summary p{margin:0 0 4px;font-size:11px;color:rgba(255,255,255,.7)}.sticky-summary strong{color:var(--gold2);font-size:20px}
-.actions{display:grid;gap:9px}
-.invalid{border-color:var(--danger)!important;box-shadow:0 0 0 3px rgba(180,35,24,.1)!important}
-.modal[hidden]{display:none}
-.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px}
-.backdrop{position:absolute;inset:0;background:rgba(15,7,18,.75)}
-.modal-card{position:relative;width:min(100%,700px);max-height:88vh;overflow:auto;border-radius:20px;background:#fff;box-shadow:0 20px 70px rgba(0,0,0,.35)}
-.modal-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:var(--p900);color:#fff}
-.modal-head h2{margin:0;font-size:18px}.close{border:0;background:transparent;color:#fff;font-size:30px}
-pre{margin:0;padding:18px;white-space:pre-wrap;word-break:break-word;font:14px/1.75 inherit}
-.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 18px 18px}
-.toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,120px);padding:13px 18px;min-width:230px;border-radius:12px;background:#24142c;color:#fff;text-align:center;transition:.25s}
-.toast.show{transform:translate(-50%,0)}
-footer{padding:34px 20px 44px;text-align:center;background:var(--p950);color:#fff}
-footer p{margin:7px 0 0;color:rgba(255,255,255,.62);font-size:12px}
-@media(max-width:700px){
-  .hero{min-height:560px;padding-top:48px}
-  .panel{padding:20px 15px;border-radius:20px}
-  .guide-grid,.grid2,.item-grid{grid-template-columns:1fr}
-  .accordion summary span{display:block;float:none;margin-top:3px}
-}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;color:var(--ink);background:linear-gradient(180deg,#f5edf8,#fffaf2)}
+button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}
+.hero{min-height:570px;padding:52px 20px 78px;display:grid;place-items:center;align-content:center;gap:13px;text-align:center;color:#fff;background:radial-gradient(circle at 50% 18%,rgba(195,123,231,.23),transparent 23rem),linear-gradient(160deg,#1d0829,#4c1766 58%,#270b35);position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border:1px solid rgba(241,221,165,.2);border-radius:50%}
+.hero:before{width:280px;height:280px;left:-150px;top:-100px}.hero:after{width:330px;height:330px;right:-175px;bottom:-145px}
+.logo{width:122px;height:122px;border-radius:50%;display:grid;place-items:center;border:3px double var(--gold2);box-shadow:inset 0 0 0 8px rgba(255,255,255,.04),0 0 34px rgba(241,221,165,.2);color:var(--gold2);font-family:serif;font-size:24px;font-weight:900;line-height:1.12;letter-spacing:3px}
+.kicker,.section-head p{margin:0;font-size:12px;font-weight:900;letter-spacing:.18em}.kicker{color:var(--gold2)}
+.hero h1{margin:0;font-family:serif;font-size:clamp(38px,9vw,62px);line-height:1.18}.hero h1 span{color:var(--gold2)}
+.hero-copy{max-width:650px;margin:0;color:rgba(255,255,255,.84);line-height:1.8}
+.btn{border:0;border-radius:14px;min-height:50px;padding:0 21px;font-weight:900;cursor:pointer;display:inline-grid;place-items:center;text-decoration:none}
+.btn-gold{color:#2d1830;background:linear-gradient(135deg,#f5dfa0,#c9963d);box-shadow:0 10px 25px rgba(213,170,80,.25)}
+.btn-white{color:var(--purple);background:#fff;border:1px solid var(--line)}.btn-full{width:100%}
+main{width:min(100% - 18px,980px);margin:-32px auto 58px;position:relative;z-index:3}
+.panel{background:rgba(255,255,255,.97);border:1px solid rgba(84,32,117,.1);border-radius:23px;padding:25px;margin-bottom:19px;box-shadow:var(--shadow)}
+.section-head{margin-bottom:19px}.section-head p{color:var(--purple)}.section-head h2{margin:4px 0 0;font-family:serif;font-size:29px}
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.guide{padding:17px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#fcf9fd,#fffdf8)}
+.guide b{color:var(--gold);font-size:12px}.guide h3{margin:8px 0 5px;font-size:17px}.guide p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+details{border:1px solid var(--line);border-radius:14px;padding:0 15px;background:#fff;margin-bottom:9px}summary{padding:16px 0;font-weight:900;cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}summary span{float:right;color:var(--purple);font-size:12px}details p{margin:0;padding:0 0 15px;color:var(--muted);font-size:13px;line-height:1.7}
+form{display:grid;gap:16px}fieldset{margin:0;padding:18px;border:1px solid var(--line);border-radius:17px;background:#fff}legend{padding:0 9px;color:var(--purple);font-weight:900}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.field{display:grid;gap:7px}.field span{font-weight:800;font-size:14px}.field b{color:var(--danger)}.field small,.note{color:var(--muted);font-size:12px;line-height:1.55}
+input,select,textarea{width:100%;border:1px solid #d8cbdc;border-radius:12px;padding:13px 14px;background:#fff;color:var(--ink);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(84,32,117,.12)}
+.item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.item-check{display:flex;gap:11px;align-items:center;min-height:60px;padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer}.item-check input{width:21px;height:21px;accent-color:var(--purple)}.item-check strong,.item-check small{display:block}.item-check small{color:var(--muted);font-size:11px}.item-check.active{background:var(--light);border-color:var(--purple)}
+.service{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:#fff}.service-head{padding:16px 17px;background:linear-gradient(135deg,#351047,#6d2d98);color:#fff}.service-head h3{margin:0;font-size:18px}.service-head p{margin:4px 0 0;font-size:12px;opacity:.82}
+.entries{padding:14px;display:grid;gap:12px}.entry{padding:15px;border:1px solid #e7ddea;border-radius:14px;background:#fbf8fc}.entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.entry-head strong{color:var(--purple)}.remove{border:0;background:transparent;color:var(--danger);font-weight:900;cursor:pointer}
+.add{margin:0 14px 14px;width:calc(100% - 28px);min-height:44px;border:1px dashed var(--purple);border-radius:12px;background:#fff;color:var(--purple);font-weight:900;cursor:pointer}
+.qty-row{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center}.qty-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:20px;cursor:pointer}.qty-input{width:72px;text-align:center;font-weight:900}
+.summary{position:sticky;bottom:8px;z-index:6;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px 17px;border-radius:17px;background:rgba(38,11,54,.96);color:#fff;box-shadow:0 14px 34px rgba(30,8,42,.3)}.summary div:last-child{text-align:right}.summary p{margin:0 0 4px;color:rgba(255,255,255,.68);font-size:11px}.summary strong{color:var(--gold2);font-size:20px}
+.actions{display:grid;gap:9px}.invalid{border-color:var(--danger)!important;box-shadow:0 0 0 3px rgba(180,35,24,.1)!important}
+.modal[hidden]{display:none}.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px}.backdrop{position:absolute;inset:0;background:rgba(15,7,18,.75)}.modal-card{position:relative;width:min(100%,700px);max-height:88vh;overflow:auto;border-radius:20px;background:#fff;box-shadow:0 20px 70px rgba(0,0,0,.35)}.modal-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:var(--deep);color:#fff}.modal-head h2{margin:0;font-size:18px}.close{border:0;background:transparent;color:#fff;font-size:30px}.modal pre{margin:0;padding:18px;white-space:pre-wrap;word-break:break-word;font:14px/1.75 inherit}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 18px 18px}
+.toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,120px);padding:13px 18px;min-width:230px;border-radius:12px;background:#24142c;color:#fff;text-align:center;transition:.25s}.toast.show{transform:translate(-50%,0)}
+footer{padding:34px 20px 44px;text-align:center;background:var(--deep);color:#fff}footer p{margin:7px 0 0;color:rgba(255,255,255,.62);font-size:12px}
+@media(max-width:700px){.hero{min-height:555px;padding-top:48px}.panel{padding:20px 15px;border-radius:20px}.guide-grid,.grid2,.item-grid{grid-template-columns:1fr}summary span{display:block;float:none;margin-top:3px}}
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="logo">混元<br>九龍殿</div>
-  <p class="eyebrow">慈悲濟世・祈福消災・超薦先靈</p>
-  <h1>混元九龍殿<br><span>中元普渡報名</span></h1>
-  <p class="hero-copy">請依照每個欄位的說明填寫。完成後，網站會自動整理成官方 LINE 容易核對的完整報名內容。</p>
-  <a href="#form" class="btn btn-gold">立即開始報名</a>
+ <div class="logo">混元<br>九龍殿</div>
+ <p class="kicker">慈悲濟世・祈福消災・超薦先靈</p>
+ <h1>混元九龍殿<br><span>中元普渡報名</span></h1>
+ <p class="hero-copy">依照欄位說明填寫，完成後系統會整理成官方 LINE 容易核對的完整報名內容。</p>
+ <a class="btn btn-gold" href="#registration">立即開始報名</a>
 </header>
 
 <main>
-  <section class="panel">
-    <div class="section-head"><p>REGISTRATION GUIDE</p><h2>報名流程</h2></div>
-    <div class="guide-grid">
-      <article class="guide"><b>STEP 01</b><h3>填聯絡人</h3><p>填寫負責與廟方聯絡的人，不一定要是科儀本人。</p></article>
-      <article class="guide"><b>STEP 02</b><h3>新增對象</h3><p>因果普渡、冤親債主、祖先與家族資料都可以新增多筆。</p></article>
-      <article class="guide"><b>STEP 03</b><h3>傳到 LINE</h3><p>先預覽確認，再一鍵複製並前往官方 LINE 貼上送出。</p></article>
-    </div>
-  </section>
+<section class="panel">
+ <div class="section-head"><p>REGISTRATION GUIDE</p><h2>報名流程</h2></div>
+ <div class="guide-grid">
+  <article class="guide"><b>STEP 01</b><h3>填寫聯絡人</h3><p>請填負責與廟方聯絡的人，不一定是科儀對象本人。</p></article>
+  <article class="guide"><b>STEP 02</b><h3>新增報名對象</h3><p>可新增多人、多位祖先與多個家族資料。</p></article>
+  <article class="guide"><b>STEP 03</b><h3>傳送官方 LINE</h3><p>先預覽確認，再複製內容並前往官方 LINE。</p></article>
+ </div>
+</section>
 
-  <section class="panel">
-    <div class="section-head"><p>SERVICE ITEMS</p><h2>科儀與項目介紹</h2></div>
-    <div class="accordion">
-      <details><summary>因果普渡 <span>本人、家人或親友</span></summary><p>請填寫實際接受祈福或科儀者的姓名、生日及國曆／農曆，可新增多人。</p></details>
-      <details><summary>冤親債主 <span>需要辦理者本人</span></summary><p>請填寫需要辦理冤親債主科儀者的姓名與出生資料，可新增多人。</p></details>
-      <details><summary>超薦祖先 <span>祖先或往生親友</span></summary><p>可登記多位祖先或往生親友；不知道堂號或往生日期可留空。</p></details>
-      <details><summary>九玄七祖 <span>家族歷代祖先</span></summary><p>請填家族姓氏；堂號不清楚可留空，也可新增不同家族資料。</p></details>
-      <details><summary>平安米 <span>依包數登記</span></summary><p>請使用加減按鈕選擇需要的包數。</p></details>
-      <details><summary>贊普 <span>依桌數登記</span></summary><p>請使用加減按鈕選擇贊普桌數。</p></details>
-    </div>
-  </section>
+<section class="panel">
+ <div class="section-head"><p>SERVICE ITEMS</p><h2>科儀與項目介紹</h2></div>
+ <details><summary>因果普渡 <span>本人、家人或親友</span></summary><p>填寫實際接受祈福或科儀者的姓名及出生資料，可新增多人。</p></details>
+ <details><summary>超薦祖先 <span>祖先或往生親友</span></summary><p>可登記多位祖先或往生親友；堂號或往生日期不清楚可留空。</p></details>
+ <details><summary>九玄七祖 <span>家族歷代祖先</span></summary><p>填寫家族姓氏與堂號，可新增不同家族資料。</p></details>
+ <details><summary>平安米 <span>依包數登記</span></summary><p>使用加減按鈕選擇需要的包數。</p></details>
+ <details><summary>贊普 <span>依桌數登記</span></summary><p>使用加減按鈕選擇贊普桌數。</p></details>
+</section>
 
-  <section class="panel" id="form">
-    <div class="section-head"><p>ONLINE FORM</p><h2>中元普渡報名表</h2></div>
+<section class="panel" id="registration">
+ <div class="section-head"><p>ONLINE FORM</p><h2>中元普渡報名表</h2></div>
+ <form id="regForm" novalidate>
+  <fieldset>
+   <legend>一、聯絡人資料</legend>
+   <div class="grid2">
+    <label class="field"><span>聯絡人姓名 <b>*</b></span><input id="contactName" placeholder="例如：王大明"><small>負責與廟方聯絡的人，不一定是科儀對象本人。</small></label>
+    <label class="field"><span>聯絡電話 <b>*</b></span><input id="contactPhone" inputmode="tel" placeholder="例如：0912-345-678"><small>方便廟方確認資料與聯絡。</small></label>
+    <label class="field"><span>LINE 名稱（選填）</span><input id="lineName" placeholder="例如：大明"><small>填寫您在 LINE 顯示的名稱，方便廟方辨識。</small></label>
+    <label class="field"><span>報名類型</span><select id="regType"><option>個人報名</option><option>家庭報名</option><option>團體報名</option></select><small>多人一起報名可選家庭或團體。</small></label>
+   </div>
+  </fieldset>
 
-    <form id="regForm" novalidate>
-      <fieldset>
-        <legend>一、聯絡人資料</legend>
-        <div class="grid2">
-          <label class="field"><span>聯絡人姓名 <b>*</b></span><input id="contactName" required placeholder="例如：王大明"><small>請填負責與廟方聯絡的人，不一定是科儀對象本人。</small></label>
-          <label class="field"><span>聯絡電話 <b>*</b></span><input id="contactPhone" required inputmode="tel" placeholder="例如：0912-345-678"><small>方便廟方確認資料與聯絡。</small></label>
-          <label class="field"><span>LINE 名稱（選填）</span><input id="lineName" placeholder="例如：大明"><small>請填您在 LINE 顯示的名稱，方便廟方辨識。</small></label>
-          <label class="field"><span>報名類型</span><select id="regType"><option>個人報名</option><option>家庭報名</option><option>團體報名</option></select><small>多人一起報名可選家庭或團體。</small></label>
-        </div>
-      </fieldset>
+  <fieldset>
+   <legend>二、選擇報名項目</legend>
+   <p class="note">勾選後會展開資料欄位。</p>
+   <div id="itemGrid" class="item-grid"></div>
+  </fieldset>
 
-      <fieldset>
-        <legend>二、選擇報名項目</legend>
-        <p class="note">勾選後會展開要填寫的資料。請依需求選擇報名項目。</p>
-        <div id="itemGrid" class="item-grid"></div>
-      </fieldset>
+  <div id="services"></div>
 
-      <div id="sections"></div>
+  <fieldset>
+   <legend>三、其他備註</legend>
+   <label class="field"><span>補充說明（選填）</span><textarea id="generalNote" rows="4" placeholder="例如：代替家人報名、請廟方聯絡、其他特殊需求"></textarea><small>沒有其他需求可留空。</small></label>
+  </fieldset>
 
-      <fieldset>
-        <legend>三、其他備註</legend>
-        <label class="field"><span>補充說明（選填）</span><textarea id="generalNote" rows="4" placeholder="例如：代替家人報名、請廟方聯絡、其他特殊需求"></textarea><small>沒有其他需求可留空。</small></label>
-      </fieldset>
-
-      <div class="sticky-summary">
-        <div><p>已選項目</p><strong id="selectedCount">0 項</strong></div>
-        <div><p>預估總金額</p><strong id="totalText">NT$0</strong></div>
-      </div>
-
-      <div class="actions">
-        <button type="button" class="btn btn-light btn-full" id="previewBtn">預覽完整報名內容</button>
-        <button type="submit" class="btn btn-gold btn-full">複製內容並前往官方 LINE</button>
-      </div>
-    </form>
-  </section>
+  <div class="summary"><div><p>已選項目</p><strong id="selectedCount">0 項</strong></div><div><p>目前總金額</p><strong id="totalText">NT$0</strong></div></div>
+  <div class="actions"><button type="button" class="btn btn-white btn-full" id="previewBtn">預覽完整報名內容</button><button class="btn btn-gold btn-full" type="submit">複製內容並前往官方 LINE</button></div>
+ </form>
+</section>
 </main>
 
 <div class="modal" id="modal" hidden>
-  <div class="backdrop" data-close></div>
-  <div class="modal-card">
-    <div class="modal-head"><h2>報名內容預覽</h2><button class="close" type="button" data-close>×</button></div>
-    <pre id="preview"></pre>
-    <div class="modal-actions">
-      <button type="button" class="btn btn-light" data-close>返回修改</button>
-      <button type="button" class="btn btn-gold" id="copyPreview">複製內容</button>
-    </div>
-  </div>
+ <div class="backdrop" data-close></div>
+ <div class="modal-card">
+  <div class="modal-head"><h2>報名內容預覽</h2><button type="button" class="close" data-close>×</button></div>
+  <pre id="preview"></pre>
+  <div class="modal-actions"><button type="button" class="btn btn-white" data-close>返回修改</button><button type="button" class="btn btn-gold" id="copyPreview">複製內容</button></div>
+ </div>
 </div>
-
-<div id="toast" class="toast"></div>
-<footer><strong>混元九龍殿</strong><p>本頁僅協助整理報名資料，不會上傳或儲存在伺服器。</p></footer>
+<div class="toast" id="toast"></div>
+<footer><strong>混元九龍殿</strong><p>本頁僅協助整理報名內容，不會將資料上傳或儲存至伺服器。</p></footer>
 
 <script>
+"use strict";
 const LINE_URL="https://lin.ee/u1LZ3VU";
-
-/* 正式費用尚未提供，目前先設為 0。收到金額後只需修改這裡。 */
-const PRICES={karma:0,creditor:0,ancestor:0,lineage:0,rice:0,offering:0};
-
+const PRICES={karma:1500,ancestor:1200,lineage:1500,rice:100,offering:6000};
 const ITEMS=[
-  {id:"karma",name:"因果普渡",sub:"可新增多位祈福對象",type:"person",unit:"位"},
-  {id:"creditor",name:"冤親債主",sub:"可新增多位辦理對象",type:"person",unit:"位"},
-  {id:"ancestor",name:"超薦祖先",sub:"可新增多位祖先或往生親友",type:"ancestor",unit:"份"},
-  {id:"lineage",name:"九玄七祖",sub:"可新增多個家族資料",type:"lineage",unit:"份"},
-  {id:"rice",name:"平安米",sub:"依包數登記",type:"qty",unit:"包"},
-  {id:"offering",name:"贊普",sub:"依桌數登記",type:"qty",unit:"桌"},
-  {id:"donation",name:"自由贊助",sub:"自由輸入金額",type:"donation",unit:"元"}
-];
+{id:"karma",name:"因果普渡",sub:"每位 NT$1,500・可新增多人",type:"person",unit:"位"},
+{id:"ancestor",name:"超薦祖先",sub:"每位 NT$1,200・可新增多位",type:"ancestor",unit:"位"},
+{id:"lineage",name:"九玄七祖",sub:"每份 NT$1,500・可新增多個家族",type:"lineage",unit:"份"},
+{id:"rice",name:"平安米",sub:"每包 NT$100",type:"qty",unit:"包"},
+{id:"offering",name:"贊普",sub:"每桌 NT$6,000",type:"qty",unit:"桌"},
+{id:"donation",name:"自由贊助",sub:"自由輸入金額",type:"donation",unit:"元"}];
 
-const blank=type=>type==="person"
-  ?{name:"",birth:"",calendar:"國曆",relation:"",note:""}
-  :type==="ancestor"
-    ?{surname:"",hall:"",deceased:"",relation:"",deathDate:"",note:""}
-    :{surname:"",hall:"",title:"歷代祖先",note:""};
-
-const state=Object.fromEntries(ITEMS.map(i=>[i.id,{
-  selected:false,
-  entries:["person","ancestor","lineage"].includes(i.type)?[blank(i.type)]:[],
-  quantity:i.type==="qty"?1:0,
-  amount:0
-}]));
-
-const $=s=>document.querySelector(s);
-const $$=s=>[...document.querySelectorAll(s)];
-const money=n=>`NT$${Number(n||0).toLocaleString("zh-TW")}`;
-
-function toast(msg){
-  $("#toast").textContent=msg;
-  $("#toast").classList.add("show");
-  setTimeout(()=>$("#toast").classList.remove("show"),2200);
+function blank(type){
+ if(type==="person")return{name:"",birth:"",calendar:"國曆",relation:"",note:""};
+ if(type==="ancestor")return{surname:"",hall:"",deceased:"",relation:"",deathDate:"",note:""};
+ return{surname:"",hall:"",title:"歷代祖先",note:""};
 }
-
+const state={};
+ITEMS.forEach(i=>state[i.id]={selected:false,entries:["person","ancestor","lineage"].includes(i.type)?[blank(i.type)]:[],quantity:i.type==="qty"?1:0,amount:0});
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>"NT$"+Number(n||0).toLocaleString("zh-TW");
+function showToast(msg){$("#toast").textContent=msg;$("#toast").classList.add("show");setTimeout(()=>$("#toast").classList.remove("show"),2100)}
 function renderItems(){
-  $("#itemGrid").innerHTML=ITEMS.map(i=>`
-    <label class="item-check ${state[i.id].selected?"active":""}">
-      <input type="checkbox" data-select="${i.id}" ${state[i.id].selected?"checked":""}>
-      <span><strong>${i.name}</strong><small>${i.sub}</small></span>
-    </label>`).join("");
+ $("#itemGrid").innerHTML=ITEMS.map(i=>`<label class="item-check ${state[i.id].selected?"active":""}"><input type="checkbox" data-select="${i.id}" ${state[i.id].selected?"checked":""}><span><strong>${i.name}</strong><small>${i.sub}</small></span></label>`).join("");
 }
-
-function field(label,key,value,placeholder,hint,required=true){
-  return `<label class="field">
-    <span>${label}${required?' <b>*</b>':'（選填）'}</span>
-    <input data-key="${key}" value="${String(value||"").replaceAll('"',"&quot;")}" placeholder="${placeholder}" ${required?"data-required='1'":""}>
-    <small>${hint}</small>
-  </label>`;
+function inputField(label,key,value,placeholder,hint,required=true){
+ return `<label class="field"><span>${label}${required?' <b>*</b>':'（選填）'}</span><input data-key="${key}" value="${esc(value)}" placeholder="${placeholder}" ${required?'data-required="1"':""}><small>${hint}</small></label>`;
 }
-
 function personCard(item,d,n){
-  return `<article class="entry" data-entry="${n}">
-    <div class="entry-head"><strong>報名對象 ${n+1}</strong>${state[item.id].entries.length>1?`<button type="button" class="remove" data-remove="${n}">刪除</button>`:""}</div>
-    <div class="grid2">
-      ${field("祈福姓名","name",d.name,"例如：王大明","請填實際接受科儀的人，可填本人、家人或親友。")}
-      ${field("出生日期","birth",d.birth,"例如：82/08/22","請填此位對象的出生日期，可用民國或西元格式。")}
-      <label class="field"><span>國曆／農曆 <b>*</b></span>
-        <select data-key="calendar"><option ${d.calendar==="國曆"?"selected":""}>國曆</option><option ${d.calendar==="農曆"?"selected":""}>農曆</option></select>
-        <small>請依照上方出生日期選擇曆別。</small>
-      </label>
-      ${field("與聯絡人關係","relation",d.relation,"例如：本人、父親、母親","方便廟方辨識這位對象與聯絡人的關係。",false)}
-      ${field("個別備註","note",d.note,"例如：需要特別聯絡","沒有補充可留空。",false)}
-    </div>
-  </article>`;
+ return `<article class="entry" data-entry="${n}"><div class="entry-head"><strong>報名對象 ${n+1}</strong>${state[item.id].entries.length>1?`<button type="button" class="remove" data-remove="${n}">刪除</button>`:""}</div><div class="grid2">
+ ${inputField("祈福姓名","name",d.name,"例如：王大明","填寫實際接受科儀的人，可填本人、家人或親友。")}
+ ${inputField("出生日期","birth",d.birth,"例如：82/08/22","可使用民國或西元格式。")}
+ <label class="field"><span>國曆／農曆 <b>*</b></span><select data-key="calendar"><option ${d.calendar==="國曆"?"selected":""}>國曆</option><option ${d.calendar==="農曆"?"selected":""}>農曆</option></select><small>依上方生日選擇曆別。</small></label>
+ ${inputField("與聯絡人關係","relation",d.relation,"例如：本人、父親、母親","方便廟方辨識。",false)}
+ ${inputField("個別備註","note",d.note,"例如：需要特別聯絡","沒有補充可留空。",false)}
+ </div></article>`;
 }
-
 function ancestorCard(item,d,n){
-  return `<article class="entry" data-entry="${n}">
-    <div class="entry-head"><strong>祖先／往生親友 ${n+1}</strong>${state[item.id].entries.length>1?`<button type="button" class="remove" data-remove="${n}">刪除</button>`:""}</div>
-    <div class="grid2">
-      ${field("祖先姓氏","surname",d.surname,"例如：王","請填欲超薦祖先或往生親友的姓氏。")}
-      ${field("堂號","hall",d.hall,"例如：太原堂","知道堂號可填，不清楚可留空。",false)}
-      ${field("往生者姓名","deceased",d.deceased,"例如：王○○","請填欲超薦者姓名；若登記歷代祖先，可填「歷代祖先」。")}
-      ${field("與聯絡人關係","relation",d.relation,"例如：祖父、祖母、父親","請填往生者與聯絡人的關係。")}
-      ${field("往生日期","deathDate",d.deathDate,"例如：民國95年或不詳","不清楚可留空。",false)}
-      ${field("個別備註","note",d.note,"例如：王氏歷代祖先","沒有補充可留空。",false)}
-    </div>
-  </article>`;
+ return `<article class="entry" data-entry="${n}"><div class="entry-head"><strong>祖先／往生親友 ${n+1}</strong>${state[item.id].entries.length>1?`<button type="button" class="remove" data-remove="${n}">刪除</button>`:""}</div><div class="grid2">
+ ${inputField("祖先姓氏","surname",d.surname,"例如：王","填寫欲超薦祖先或往生親友的姓氏。")}
+ ${inputField("堂號","hall",d.hall,"例如：太原堂","不清楚可留空。",false)}
+ ${inputField("往生者姓名","deceased",d.deceased,"例如：王○○","歷代祖先可直接填「歷代祖先」。")}
+ ${inputField("與聯絡人關係","relation",d.relation,"例如：祖父、祖母、父親","填寫往生者與聯絡人的關係。")}
+ ${inputField("往生日期","deathDate",d.deathDate,"例如：民國95年或不詳","不清楚可留空。",false)}
+ ${inputField("個別備註","note",d.note,"例如：王氏歷代祖先","沒有補充可留空。",false)}
+ </div></article>`;
 }
-
 function lineageCard(item,d,n){
-  return `<article class="entry" data-entry="${n}">
-    <div class="entry-head"><strong>家族資料 ${n+1}</strong>${state[item.id].entries.length>1?`<button type="button" class="remove" data-remove="${n}">刪除</button>`:""}</div>
-    <div class="grid2">
-      ${field("家族姓氏","surname",d.surname,"例如：王","請填要登記九玄七祖的家族姓氏。")}
-      ${field("堂號","hall",d.hall,"例如：太原堂","知道堂號可填，不清楚可留空。",false)}
-      ${field("登記名稱","title",d.title,"例如：歷代祖先","一般可填「九玄七祖」或「歷代祖先」。")}
-      ${field("備註","note",d.note,"例如：王氏歷代祖先","沒有補充可留空。",false)}
-    </div>
-  </article>`;
+ return `<article class="entry" data-entry="${n}"><div class="entry-head"><strong>家族資料 ${n+1}</strong>${state[item.id].entries.length>1?`<button type="button" class="remove" data-remove="${n}">刪除</button>`:""}</div><div class="grid2">
+ ${inputField("家族姓氏","surname",d.surname,"例如：王","填寫要登記九玄七祖的家族姓氏。")}
+ ${inputField("堂號","hall",d.hall,"例如：太原堂","不清楚可留空。",false)}
+ ${inputField("登記名稱","title",d.title,"例如：歷代祖先","可填九玄七祖或歷代祖先。")}
+ ${inputField("備註","note",d.note,"例如：王氏歷代祖先","沒有補充可留空。",false)}
+ </div></article>`;
 }
-
-function renderSections(){
-  $("#sections").innerHTML=ITEMS.filter(i=>state[i.id].selected).map(i=>{
-    let body="";
-    if(i.type==="person")body=`<div class="entries">${state[i.id].entries.map((d,n)=>personCard(i,d,n)).join("")}</div><button class="add" type="button" data-add>＋ 新增一位</button>`;
-    if(i.type==="ancestor")body=`<div class="entries">${state[i.id].entries.map((d,n)=>ancestorCard(i,d,n)).join("")}</div><button class="add" type="button" data-add>＋ 新增一位祖先／往生親友</button>`;
-    if(i.type==="lineage")body=`<div class="entries">${state[i.id].entries.map((d,n)=>lineageCard(i,d,n)).join("")}</div><button class="add" type="button" data-add>＋ 新增一個家族資料</button>`;
-    if(i.type==="qty")body=`<div class="entries"><div class="qty-row"><div><strong>${i.name}數量</strong><div class="note">請選擇${i.unit}數。</div></div><button class="qty-btn" type="button" data-qty="-1">−</button><input class="qty-input" type="number" min="1" value="${state[i.id].quantity}" data-quantity><button class="qty-btn" type="button" data-qty="1">＋</button></div></div>`;
-    if(i.type==="donation")body=`<div class="entries"><label class="field"><span>自由贊助金額（選填）</span><input type="number" min="0" step="100" data-donation value="${state[i.id].amount||""}" placeholder="例如：500"><small>不贊助可留空或取消勾選。</small></label></div>`;
-    return `<section class="section-card" data-section="${i.id}"><div class="section-title"><h3>${i.name}</h3><p>${i.sub}</p></div>${body}</section>`;
-  }).join("");
-  updateSummary();
+function renderServices(){
+ $("#services").innerHTML=ITEMS.filter(i=>state[i.id].selected).map(i=>{
+  let body="";
+  if(i.type==="person")body=`<div class="entries">${state[i.id].entries.map((d,n)=>personCard(i,d,n)).join("")}</div><button class="add" type="button" data-add>＋ 新增一位</button>`;
+  if(i.type==="ancestor")body=`<div class="entries">${state[i.id].entries.map((d,n)=>ancestorCard(i,d,n)).join("")}</div><button class="add" type="button" data-add>＋ 新增一位祖先／往生親友</button>`;
+  if(i.type==="lineage")body=`<div class="entries">${state[i.id].entries.map((d,n)=>lineageCard(i,d,n)).join("")}</div><button class="add" type="button" data-add>＋ 新增一個家族資料</button>`;
+  if(i.type==="qty")body=`<div class="entries"><div class="qty-row"><div><strong>${i.name}數量</strong><div class="note">選擇${i.unit}數。</div></div><button type="button" class="qty-btn" data-qty="-1">−</button><input class="qty-input" type="number" min="1" value="${state[i.id].quantity}" data-quantity><button type="button" class="qty-btn" data-qty="1">＋</button></div></div>`;
+  if(i.type==="donation")body=`<div class="entries"><label class="field"><span>自由贊助金額（選填）</span><input type="number" min="0" step="100" data-donation value="${state[i.id].amount||""}" placeholder="例如：500"><small>不贊助可留空或取消勾選。</small></label></div>`;
+  return `<section class="service" data-service="${i.id}"><div class="service-head"><h3>${i.name}</h3><p>${i.sub}</p></div>${body}</section>`;
+ }).join("");
+ updateSummary();
 }
-
 function total(){
-  return ITEMS.reduce((sum,i)=>{
-    if(!state[i.id].selected)return sum;
-    if(["person","ancestor","lineage"].includes(i.type))return sum+(PRICES[i.id]||0)*state[i.id].entries.length;
-    if(i.type==="qty")return sum+(PRICES[i.id]||0)*state[i.id].quantity;
-    if(i.type==="donation")return sum+Number(state[i.id].amount||0);
-    return sum;
-  },0);
+ return ITEMS.reduce((sum,i)=>{
+  if(!state[i.id].selected)return sum;
+  if(["person","ancestor","lineage"].includes(i.type))return sum+(PRICES[i.id]||0)*state[i.id].entries.length;
+  if(i.type==="qty")return sum+(PRICES[i.id]||0)*state[i.id].quantity;
+  if(i.type==="donation")return sum+Number(state[i.id].amount||0);
+  return sum;
+ },0);
 }
-
-function updateSummary(){
-  $("#selectedCount").textContent=`${ITEMS.filter(i=>state[i.id].selected).length} 項`;
-  $("#totalText").textContent=money(total());
-}
-
-$("#itemGrid").addEventListener("change",e=>{
-  const id=e.target.dataset.select;if(!id)return;
-  state[id].selected=e.target.checked;
-  renderItems();renderSections();
+function updateSummary(){$("#selectedCount").textContent=ITEMS.filter(i=>state[i.id].selected).length+" 項";$("#totalText").textContent=money(total())}
+$("#itemGrid").addEventListener("change",e=>{const id=e.target.dataset.select;if(!id)return;state[id].selected=e.target.checked;renderItems();renderServices()});
+$("#services").addEventListener("click",e=>{
+ const sec=e.target.closest("[data-service]");if(!sec)return;
+ const id=sec.dataset.service,item=ITEMS.find(x=>x.id===id);
+ if(e.target.matches("[data-add]")){state[id].entries.push(blank(item.type));renderServices()}
+ if(e.target.matches("[data-remove]")){state[id].entries.splice(Number(e.target.dataset.remove),1);renderServices()}
+ if(e.target.matches("[data-qty]")){state[id].quantity=Math.max(1,state[id].quantity+Number(e.target.dataset.qty));renderServices()}
 });
-
-$("#sections").addEventListener("click",e=>{
-  const sec=e.target.closest("[data-section]");if(!sec)return;
-  const id=sec.dataset.section,item=ITEMS.find(x=>x.id===id);
-  if(e.target.matches("[data-add]")){state[id].entries.push(blank(item.type));renderSections()}
-  if(e.target.matches("[data-remove]")){state[id].entries.splice(Number(e.target.dataset.remove),1);renderSections()}
-  if(e.target.matches("[data-qty]")){state[id].quantity=Math.max(1,state[id].quantity+Number(e.target.dataset.qty));renderSections()}
+$("#services").addEventListener("input",e=>{
+ const sec=e.target.closest("[data-service]");if(!sec)return;
+ const id=sec.dataset.service,entry=e.target.closest("[data-entry]");
+ if(entry&&e.target.dataset.key)state[id].entries[Number(entry.dataset.entry)][e.target.dataset.key]=e.target.value;
+ if(e.target.matches("[data-quantity]"))state[id].quantity=Math.max(1,Number(e.target.value||1));
+ if(e.target.matches("[data-donation]"))state[id].amount=Number(e.target.value||0);
+ updateSummary();
 });
-
-$("#sections").addEventListener("input",e=>{
-  const sec=e.target.closest("[data-section]");if(!sec)return;
-  const id=sec.dataset.section,entry=e.target.closest("[data-entry]");
-  if(entry&&e.target.dataset.key)state[id].entries[Number(entry.dataset.entry)][e.target.dataset.key]=e.target.value;
-  if(e.target.matches("[data-quantity]"))state[id].quantity=Math.max(1,Number(e.target.value||1));
-  if(e.target.matches("[data-donation]"))state[id].amount=Number(e.target.value||0);
-  updateSummary();
-});
-
 function validate(){
-  $$(".invalid").forEach(x=>x.classList.remove("invalid"));
-  let bad=false;
-  ["#contactName","#contactPhone"].forEach(s=>{const x=$(s);if(!x.value.trim()){x.classList.add("invalid");bad=true}});
-  if(!ITEMS.some(i=>state[i.id].selected)){toast("請至少選擇一個報名項目");return false}
-  $$("[data-required='1']").forEach(x=>{if(!x.value.trim()){x.classList.add("invalid");bad=true}});
-  if(bad){toast("請完成紅色標示的必填欄位");$(".invalid")?.scrollIntoView({behavior:"smooth",block:"center"});return false}
-  return true;
+ $$(".invalid").forEach(x=>x.classList.remove("invalid"));let bad=false;
+ ["#contactName","#contactPhone"].forEach(s=>{const x=$(s);if(!x.value.trim()){x.classList.add("invalid");bad=true}});
+ if(!ITEMS.some(i=>state[i.id].selected)){showToast("請至少選擇一個報名項目");return false}
+ $$("[data-required='1']").forEach(x=>{if(!x.value.trim()){x.classList.add("invalid");bad=true}});
+ if(bad){showToast("請完成紅色標示的必填欄位");$(".invalid")?.scrollIntoView({behavior:"smooth",block:"center"});return false}
+ return true;
 }
-
 function buildMessage(){
-  const lines=[
-    "🏮 混元九龍殿 中元普渡報名",
-    "",
-    "━━━━━━━━━━━━━━",
-    "【聯絡人資料】",
-    `報名類型：${$("#regType").value}`,
-    `姓名：${$("#contactName").value.trim()}`,
-    `電話：${$("#contactPhone").value.trim()}`,
-    `LINE 名稱：${$("#lineName").value.trim()||"未填寫"}`,
-    "━━━━━━━━━━━━━━"
-  ];
-
-  ITEMS.filter(i=>state[i.id].selected).forEach(i=>{
-    lines.push("",`【${i.name}】`);
-    if(i.type==="person"){
-      lines.push(`共 ${state[i.id].entries.length} 位`);
-      state[i.id].entries.forEach((d,n)=>lines.push(
-        "",`${n+1}. ${d.name}`,
-        `出生日期：${d.birth}（${d.calendar}）`,
-        `與聯絡人關係：${d.relation||"未填寫"}`,
-        `備註：${d.note||"無"}`
-      ));
-    }
-    if(i.type==="ancestor"){
-      lines.push(`共 ${state[i.id].entries.length} 筆`);
-      state[i.id].entries.forEach((d,n)=>lines.push(
-        "",`${n+1}. ${d.deceased}`,
-        `祖先姓氏：${d.surname}`,
-        `堂號：${d.hall||"不詳／未填"}`,
-        `與聯絡人關係：${d.relation}`,
-        `往生日期：${d.deathDate||"不詳／未填"}`,
-        `備註：${d.note||"無"}`
-      ));
-    }
-    if(i.type==="lineage"){
-      lines.push(`共 ${state[i.id].entries.length} 筆家族資料`);
-      state[i.id].entries.forEach((d,n)=>lines.push(
-        "",`${n+1}. ${d.surname}氏 ${d.title}`,
-        `堂號：${d.hall||"不詳／未填"}`,
-        `備註：${d.note||"無"}`
-      ));
-    }
-    if(i.type==="qty")lines.push(`數量：${state[i.id].quantity} ${i.unit}`);
-    if(i.type==="donation")lines.push(`金額：${money(state[i.id].amount)}`);
-    lines.push("","──────────────────");
-  });
-
-  lines.push("","【費用明細】");
-  ITEMS.filter(i=>state[i.id].selected).forEach(i=>{
-    if(i.type==="donation"){lines.push(`${i.name}：${money(state[i.id].amount)}`);return}
-    const qty=["person","ancestor","lineage"].includes(i.type)?state[i.id].entries.length:state[i.id].quantity;
-    const price=PRICES[i.id]||0;
-    lines.push(price
-      ?`${i.name}：${qty} ${i.unit} × ${money(price)} ＝ ${money(qty*price)}`
-      :`${i.name}：${qty} ${i.unit}（金額請廟方確認）`
-    );
-  });
-  lines.push(
-    "",
-    `預估總金額：${money(total())}`,
-    "※ 實際金額與登記方式以廟方最後確認為準。",
-    "",
-    "━━━━━━━━━━━━━━",
-    "【其他備註】",
-    $("#generalNote").value.trim()||"無",
-    "━━━━━━━━━━━━━━"
-  );
-  return lines.join("\n");
+ const l=["🏮 混元九龍殿 中元普渡報名","","━━━━━━━━━━━━━━","【聯絡人資料】",`報名類型：${$("#regType").value}`,`姓名：${$("#contactName").value.trim()}`,`電話：${$("#contactPhone").value.trim()}`,`LINE 名稱：${$("#lineName").value.trim()||"未填寫"}`,"━━━━━━━━━━━━━━"];
+ ITEMS.filter(i=>state[i.id].selected).forEach(i=>{
+  l.push("",`【${i.name}】`);
+  if(i.type==="person"){l.push(`共 ${state[i.id].entries.length} 位`);state[i.id].entries.forEach((d,n)=>l.push("",`${n+1}. ${d.name}`,`出生日期：${d.birth}（${d.calendar}）`,`與聯絡人關係：${d.relation||"未填寫"}`,`備註：${d.note||"無"}`))}
+  if(i.type==="ancestor"){l.push(`共 ${state[i.id].entries.length} 筆`);state[i.id].entries.forEach((d,n)=>l.push("",`${n+1}. ${d.deceased}`,`祖先姓氏：${d.surname}`,`堂號：${d.hall||"不詳／未填"}`,`與聯絡人關係：${d.relation}`,`往生日期：${d.deathDate||"不詳／未填"}`,`備註：${d.note||"無"}`))}
+  if(i.type==="lineage"){l.push(`共 ${state[i.id].entries.length} 筆家族資料`);state[i.id].entries.forEach((d,n)=>l.push("",`${n+1}. ${d.surname}氏 ${d.title}`,`堂號：${d.hall||"不詳／未填"}`,`備註：${d.note||"無"}`))}
+  if(i.type==="qty")l.push(`數量：${state[i.id].quantity} ${i.unit}`);
+  if(i.type==="donation")l.push(`金額：${money(state[i.id].amount)}`);
+  l.push("","──────────────────");
+ });
+ l.push("","【費用明細】");
+ ITEMS.filter(i=>state[i.id].selected).forEach(i=>{
+  if(i.type==="donation"){l.push(`${i.name}：${money(state[i.id].amount)}`);return}
+  const qty=["person","ancestor","lineage"].includes(i.type)?state[i.id].entries.length:state[i.id].quantity,price=PRICES[i.id]||0;
+  l.push(price?`${i.name}：${qty} ${i.unit} × ${money(price)} ＝ ${money(qty*price)}`:`${i.name}：${qty} ${i.unit}（金額請廟方確認）`);
+ });
+ l.push("",`總金額：${money(total())}`,"※ 報名內容與金額請送出前再次確認。","","━━━━━━━━━━━━━━","【其他備註】",$("#generalNote").value.trim()||"無","━━━━━━━━━━━━━━");
+ return l.join("\n");
 }
-
-async function copyText(text){
-  try{await navigator.clipboard.writeText(text)}
-  catch{
-    const a=document.createElement("textarea");a.value=text;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove();
-  }
-  toast("報名內容已複製");
-}
-
-$("#previewBtn").addEventListener("click",()=>{
-  if(!validate())return;
-  $("#preview").textContent=buildMessage();
-  $("#modal").hidden=false;document.body.style.overflow="hidden";
-});
+async function copyText(text){try{await navigator.clipboard.writeText(text)}catch{const a=document.createElement("textarea");a.value=text;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}showToast("報名內容已複製")}
+$("#previewBtn").addEventListener("click",()=>{if(!validate())return;$("#preview").textContent=buildMessage();$("#modal").hidden=false;document.body.style.overflow="hidden"});
 $$("[data-close]").forEach(x=>x.addEventListener("click",()=>{$("#modal").hidden=true;document.body.style.overflow=""}));
 $("#copyPreview").addEventListener("click",()=>copyText($("#preview").textContent));
-$("#regForm").addEventListener("submit",async e=>{
-  e.preventDefault();if(!validate())return;
-  await copyText(buildMessage());
-  setTimeout(()=>window.open(LINE_URL,"_blank","noopener"),350);
-});
-
-renderItems();renderSections();
+$("#regForm").addEventListener("submit",async e=>{e.preventDefault();if(!validate())return;await copyText(buildMessage());setTimeout(()=>window.open(LINE_URL,"_blank","noopener"),350)});
+renderItems();renderServices();
 </script>
 </body>
 </html>

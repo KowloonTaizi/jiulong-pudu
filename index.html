@@ -1,461 +1,64 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#6b1616" />
-  <title>九龍高層幹部｜中元普渡祈福報名</title>
-  <style>
-    :root{
-      --red:#7c1f1f; --red2:#4c1010; --gold:#d6ad58; --cream:#fff9ec;
-      --ink:#2d251f; --muted:#766b61; --card:#fffdf8; --line:#eadfc9;
-      --ok:#26734d; --shadow:0 12px 34px rgba(69,26,18,.12);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; color:var(--ink);
-      font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%,rgba(214,173,88,.18),transparent 28%),
-        linear-gradient(180deg,#fff8e8 0,#f8efe0 100%);
-      line-height:1.65;
-    }
-    a{color:inherit}
-    .wrap{width:min(1120px,calc(100% - 32px));margin:auto}
-    .hero{
-      color:white; padding:20px 0 72px; position:relative; overflow:hidden;
-      background:
-        linear-gradient(135deg,rgba(83,10,10,.97),rgba(130,33,25,.95)),
-        radial-gradient(circle at 85% 20%,rgba(214,173,88,.35),transparent 28%);
-    }
-    .hero:after{
-      content:"福"; position:absolute; right:-35px; bottom:-150px;
-      font-size:340px; font-family:serif; color:rgba(255,235,180,.07); transform:rotate(-8deg)
-    }
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{font-weight:900;letter-spacing:.08em}
-    .navlinks{display:flex;gap:18px;font-size:14px;opacity:.9}
-    .navlinks a{text-decoration:none}
-    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:38px;align-items:center;padding-top:58px}
-    .eyebrow{color:#ffe09a;font-weight:800;letter-spacing:.12em}
-    h1{font-size:clamp(38px,6vw,72px);line-height:1.12;margin:12px 0 18px;letter-spacing:.03em}
-    .lead{font-size:18px;max-width:720px;color:#fff5df}
-    .hero-card{
-      position:relative; z-index:2; padding:28px; border:1px solid rgba(255,235,183,.28);
-      background:rgba(255,255,255,.08); backdrop-filter:blur(10px); border-radius:24px;
-      box-shadow:0 20px 60px rgba(0,0,0,.2)
-    }
-    .hero-card b{color:#ffe09a}
-    .hero-card .date{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-    .hero-card .date div{padding:12px;border-radius:14px;background:rgba(255,255,255,.08)}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;
-      padding:13px 20px;font-weight:900;cursor:pointer;text-decoration:none;transition:.2s;
-      background:var(--gold);color:#3f220b;box-shadow:0 8px 20px rgba(214,173,88,.25)
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn.alt{background:white;color:var(--red);box-shadow:none}
-    .btn.line{background:#06c755;color:white}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-    section{padding:72px 0}
-    .section-title{text-align:center;margin-bottom:34px}
-    .section-title span{color:var(--red);font-weight:900;letter-spacing:.12em}
-    .section-title h2{font-size:clamp(28px,4vw,42px);margin:6px 0 8px}
-    .section-title p{margin:0;color:var(--muted)}
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{
-      background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)
-    }
-    .icon{font-size:32px}
-    .card h3{margin:8px 0}
-    .card p{color:var(--muted);margin:0}
-    .ritual{background:#fffdf8}
-    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .step{position:relative;padding:25px;border-radius:20px;background:#fff;border:1px solid var(--line)}
-    .num{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--red);color:white;font-weight:900}
-    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-    .product{
-      display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:18px;background:white;border:1px solid var(--line)
-    }
-    .product .price{margin-left:auto;white-space:nowrap;color:var(--red);font-weight:900}
-    .product input{margin-top:7px;transform:scale(1.25)}
-    .form-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:start}
-    .sticky{position:sticky;top:18px}
-    label{display:block;font-weight:800;margin:13px 0 6px}
-    input,select,textarea{
-      width:100%;padding:13px 14px;border:1px solid #d9cdb8;border-radius:13px;background:#fff;
-      color:var(--ink);font:inherit;outline:none
-    }
-    input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(214,173,88,.18)}
-    textarea{min-height:105px;resize:vertical}
-    .twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .recommend-box{
-      padding:18px;border-radius:18px;background:#fff5db;border:1px dashed #c99938;margin-top:14px
-    }
-    .recommend-box strong{color:var(--red)}
-    .summary{white-space:pre-wrap;background:#241b17;color:#fff8e8;border-radius:18px;padding:18px;font-size:14px;min-height:160px}
-    .hint{font-size:13px;color:var(--muted)}
-    .total{font-size:24px;font-weight:900;color:var(--red);margin-top:12px}
-    .sponsor-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-    .sponsor-option{
-      border:1px solid var(--line);background:white;border-radius:16px;padding:14px;cursor:pointer
-    }
-    .sponsor-option input{width:auto;margin-right:6px}
-    .notice{padding:14px 16px;border-left:4px solid var(--gold);background:#fff7df;border-radius:10px}
-    footer{padding:32px 0;color:#f7e9ce;background:#34100d;text-align:center;font-size:14px}
-    .mobilebar{display:none}
-    @media(max-width:820px){
-      .hero-grid,.form-layout{grid-template-columns:1fr}
-      .grid3,.timeline{grid-template-columns:1fr}
-      .products{grid-template-columns:1fr}
-      .sponsor-grid{grid-template-columns:1fr 1fr}
-      .navlinks{display:none}.sticky{position:static}
-      section{padding:54px 0}
-      .mobilebar{
-        position:fixed;z-index:20;display:flex;left:12px;right:12px;bottom:12px;gap:8px;
-        padding:8px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
-        border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)
-      }
-      .mobilebar .btn{flex:1;padding:11px 10px;font-size:14px}
-      footer{padding-bottom:100px}
-    }
-  
-    /* 手機版修正：避免核取方塊被全域 input 樣式撐滿 */
-    .product{
-      display:grid;
-      grid-template-columns:26px minmax(0,1fr) auto;
-      align-items:start;
-      gap:14px;
-      width:100%;
-      min-width:0;
-    }
-    .product input[type="checkbox"]{
-      width:20px !important;
-      height:20px;
-      min-width:20px;
-      padding:0;
-      margin:5px 0 0;
-      box-shadow:none;
-      accent-color:var(--red);
-    }
-    .product > div{
-      min-width:0;
-      overflow-wrap:anywhere;
-    }
-    .product .price{
-      margin-left:0;
-      justify-self:end;
-    }
-    .section-title h2{
-      overflow-wrap:anywhere;
-    }
-    @media(max-width:520px){
-      .wrap{width:min(100% - 24px,1120px)}
-      h1{font-size:36px}
-      .section-title h2{font-size:29px;line-height:1.35}
-      .products{gap:12px}
-      .product{
-        grid-template-columns:24px minmax(0,1fr);
-        padding:18px 16px;
-      }
-      .product .price{
-        grid-column:2;
-        justify-self:start;
-        margin-top:6px;
-      }
-      .twocol{grid-template-columns:1fr}
-      .sponsor-grid{grid-template-columns:1fr}
-      .hero-card .date{grid-template-columns:1fr}
-      .card{padding:19px}
-      .mobilebar .btn{width:100%}
-    }
-
-  
-    .selected-total-box{
-      position:sticky;
-      bottom:88px;
-      z-index:12;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-top:18px;
-      padding:15px 18px;
-      border-radius:18px;
-      background:rgba(76,16,16,.96);
-      color:white;
-      box-shadow:0 12px 30px rgba(69,26,18,.25);
-      backdrop-filter:blur(10px);
-    }
-    .selected-total-box strong{
-      color:#ffe09a;
-      white-space:nowrap;
-      font-size:18px;
-    }
-    .product:has(input:checked){
-      border-color:var(--gold);
-      background:#fff8df;
-      box-shadow:0 0 0 3px rgba(214,173,88,.14);
-    }
-    @media(max-width:520px){
-      .selected-total-box{
-        bottom:84px;
-        padding:13px 14px;
-        font-size:14px;
-      }
-      .selected-total-box strong{font-size:16px}
-    }
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5b176d">
+<title>混元九龍殿｜中元普渡線上報名</title>
+<style>
+:root{--purple:#5b176d;--purple2:#2f083b;--gold:#d9b25f;--cream:#fffaf0;--ink:#2b242c;--muted:#756a75;--line:#eadfc9;--card:#fffdf9;--green:#06c755;--shadow:0 14px 35px rgba(64,20,72,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:linear-gradient(180deg,#fff9ed,#f5ecf7);line-height:1.65}.wrap{width:min(1080px,calc(100% - 28px));margin:auto}.hero{padding:24px 0 64px;color:#fff;background:radial-gradient(circle at 80% 10%,rgba(217,178,95,.28),transparent 30%),linear-gradient(135deg,var(--purple2),var(--purple));}.brand{font-weight:900;letter-spacing:.12em}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding-top:48px}.eyebrow{color:#ffe6a7;font-weight:900}.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.15;margin:10px 0 18px}.hero p{color:#fff5de;font-size:18px}.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:24px;backdrop-filter:blur(10px)}.dates{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dates div{background:rgba(255,255,255,.08);padding:12px;border-radius:14px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:14px 20px;font-weight:900;text-decoration:none;cursor:pointer;background:var(--gold);color:#3e2705}.btn.line{background:var(--green);color:white}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}section{padding:58px 0}.section-title{text-align:center;margin-bottom:28px}.section-title span{color:var(--purple);font-weight:900}.section-title h2{font-size:clamp(28px,5vw,42px);margin:4px 0 6px}.section-title p{color:var(--muted);margin:0}.products{display:grid;grid-template-columns:1fr 1fr;gap:14px}.product{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;cursor:pointer}.product:has(input:checked){border-color:var(--gold);background:#fff8de;box-shadow:0 0 0 3px rgba(217,178,95,.15)}.product input{width:20px;height:20px;margin-top:5px;accent-color:var(--purple)}.price{color:var(--purple);font-weight:900;white-space:nowrap}.form-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:start}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.sticky{position:sticky;top:15px}label.field{display:block;font-weight:800;margin:13px 0 6px}input,select,textarea{width:100%;padding:13px 14px;border:1px solid #d8ccb8;border-radius:13px;background:#fff;font:inherit;color:var(--ink)}textarea{min-height:90px;resize:vertical}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}.detail-box{display:none;margin-top:16px;padding:16px;border:1px dashed #c8a553;background:#fff9e9;border-radius:16px}.detail-box.show{display:block}.detail-box h3{margin:0 0 8px;color:var(--purple)}.qty-row{display:grid;grid-template-columns:1fr 120px;gap:12px;align-items:end}.summary{white-space:pre-wrap;background:#241927;color:#fff8e8;border-radius:16px;padding:16px;font-size:14px;max-height:480px;overflow:auto}.total{font-size:26px;font-weight:900;color:var(--purple);margin-top:12px}.notice{margin-top:14px;padding:12px 14px;border-left:4px solid var(--gold);background:#fff7de;border-radius:10px}.submit-area{display:grid;gap:10px;margin-top:20px}.btn.full{width:100%;font-size:17px}.result{display:none;margin-top:16px;padding:18px;border-radius:16px;background:#edf9f1;border:1px solid #a8d9ba}.result.show{display:block}.result h3{margin-top:0;color:#176a39}.mobilebar{display:none}footer{text-align:center;background:#2c0a35;color:#f7e8f9;padding:28px 0;font-size:14px}@media(max-width:820px){.hero-grid,.form-layout,.products{grid-template-columns:1fr}.sticky{position:static}.twocol{grid-template-columns:1fr}.dates{grid-template-columns:1fr}.product{grid-template-columns:24px 1fr}.product .price{grid-column:2}.mobilebar{display:flex;position:fixed;z-index:30;left:10px;right:10px;bottom:10px;gap:8px;padding:8px;border-radius:18px;background:rgba(255,255,255,.94);box-shadow:var(--shadow)}.mobilebar .btn{flex:1;padding:11px 8px;font-size:14px}footer{padding-bottom:92px}}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="wrap">
-    <nav>
-      <div class="brand">九龍高層幹部｜中元普渡</div>
-      <div class="navlinks">
-        <a href="#meaning">科儀用意</a><a href="#items">報名項目</a><a href="#signup">線上報名</a>
-    </div>
-    </nav>
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow">乙巳年・中元普渡祈福科儀</div>
-        <h1>敬天酬神・慎終追遠<br>普施十方・福澤家門</h1>
-        <p class="lead">透過莊嚴科儀、供品敬獻與公益贊助，為闔家祈安、祖先追思、冤親債主解結，也讓無祀孤魂共享甘露法食。</p>
-        <div class="hero-actions">
-          <a class="btn" href="#signup">立即報名</a>
-          
-        </div>
-      </div>
-      <div class="hero-card">
-        <h3 style="margin-top:0">本次重要日期</h3>
-        <p>報名與繳費完成後，由承辦人員統一核對名單及金額。</p>
-        <div class="date">
-          <div><small>報名截止</small><br><b>國曆 8/15（六）</b></div>
-          <div><small>繳費截止</small><br><b>國曆 8/16（日）</b></div>
-          <div><small>貼榜準備</small><br><b>國曆 8/23 10:00 前</b></div>
-          <div><small>中元普渡</small><br><b>國曆 9/5</b></div>
-        </div>
-        <p class="hint" style="color:#f7e7c2;margin-bottom:0">日期可在網站程式最上方設定區直接修改。</p>
-      </div>
-    </div>
-  </div>
-</header>
+<header class="hero"><div class="wrap"><div class="brand">混元九龍殿｜中元普渡</div><div class="hero-grid"><div><div class="eyebrow">中元普渡祈福科儀</div><h1>敬天酬神・慎終追遠<br>普施十方・福澤家門</h1><p>請依需求勾選報名項目，填寫信徒本人與科儀所需資料。送出後，網站會複製完整內容，再由您前往官方 LINE 貼上傳送。</p><div class="actions"><a class="btn" href="#signup">立即報名</a><a class="btn line" href="https://lin.ee/u1LZ3VU" target="_blank" rel="noopener">加入官方 LINE</a></div></div><div class="hero-card"><h3>本次重要日期</h3><div class="dates"><div><small>報名截止</small><br><b>國曆 8/15</b></div><div><small>繳費截止</small><br><b>國曆 8/16</b></div><div><small>貼榜準備</small><br><b>國曆 8/23 10:00 前</b></div><div><small>中元普渡</small><br><b>國曆 9/5</b></div></div></div></div></div></header>
+<section id="items"><div class="wrap"><div class="section-title"><span>報名項目</span><h2>請選擇要參加的項目</h2><p>勾選後會自動顯示該項目需要填寫的資料。</p></div><div class="products">
+<label class="product"><input type="checkbox" class="item" id="itemCause" data-name="因果普渡" data-price="1500"><div><b>因果普渡｜每位</b><div>需填祈福姓名、出生日期。</div></div><span class="price">NT$1,500</span></label>
+<label class="product"><input type="checkbox" class="item" id="itemAncestor" data-name="超薦祖先" data-price="1200"><div><b>超薦祖先｜每位</b><div>需填祖先姓氏、往生者姓名或歷代祖先等資料。</div></div><span class="price">NT$1,200</span></label>
+<label class="product"><input type="checkbox" class="item" id="itemNine" data-name="九玄七祖" data-price="1500"><div><b>九玄七祖｜每位</b><div>需填祖先姓氏、堂號或家族資料。</div></div><span class="price">NT$1,500</span></label>
+<label class="product"><input type="checkbox" class="item" id="itemRice" data-name="平安米" data-price="100"><div><b>平安米｜每包</b><div>請填需要的包數。</div></div><span class="price">NT$100</span></label>
+<label class="product"><input type="checkbox" class="item" id="itemTable" data-name="贊普" data-price="6000"><div><b>贊普｜每桌</b><div>請填贊普桌數。</div></div><span class="price">NT$6,000</span></label>
+</div></div></section>
+<section id="signup"><div class="wrap"><div class="section-title"><span>線上報名</span><h2>填寫信徒與科儀資料</h2><p>宮廟地址與電話不會放入表單，只收取信徒本人報名所需資料。</p></div><div class="form-layout"><aside class="card sticky"><h3>報名摘要</h3><div id="summary" class="summary">尚未填寫資料。</div><div id="total" class="total">合計：NT$0</div><div class="notice">送出後會先複製完整內容，再顯示「前往官方 LINE」按鈕。請到 LINE 聊天室長按貼上並送出。</div></aside>
+<form class="card" id="form">
+<h3>一、信徒基本資料</h3><div class="twocol"><div><label class="field" for="name">姓名 *</label><input id="name" required placeholder="例如：王小明"></div><div><label class="field" for="phone">聯絡電話 *</label><input id="phone" required inputmode="tel" placeholder="09xx-xxx-xxx"></div></div>
+<label class="field" for="lineName">LINE 顯示名稱（選填）</label><input id="lineName" placeholder="方便官方 LINE 核對">
 
-<section id="meaning">
-  <div class="wrap">
-    <div class="section-title">
-      <span>科儀內容與用意</span>
-      <h2>不只是供桌，更是一份敬意與祝願</h2>
-      <p>以下文字可依宮廟實際法脈、主法科儀與師父說法調整。</p>
-    </div>
-    <div class="grid3">
-      <article class="card"><div class="icon">🙏</div><h3>敬天酬神</h3><p>感謝神明護佑，敬備香花、燈燭、果品與供饌，祈求地方安寧、善信平安、事業順遂。</p></article>
-      <article class="card"><div class="icon">🏮</div><h3>超薦祖先</h3><p>以虔誠心追思歷代祖先，祈願祖靈蒙受功德、離苦得樂，也提醒後代飲水思源。</p></article>
-      <article class="card"><div class="icon">🕊️</div><h3>普施十方</h3><p>普施無祀孤魂與十方法界，透過法食、經懺與供養，廣結善緣、冥陽兩利。</p></article>
-    </div>
-  </div>
-</section>
+<div id="causeBox" class="detail-box"><h3>二、因果普渡資料</h3><div class="twocol"><div><label class="field">祈福姓名 *</label><input id="causeName"></div><div><label class="field">出生日期 *</label><input id="causeBirth" placeholder="例如：民國82/08/22"></div></div><label class="field">曆別</label><select id="causeCalendar"><option>國曆</option><option>農曆</option></select><label class="field">備註（選填）</label><textarea id="causeNote" placeholder="其他需告知事項"></textarea></div>
 
-<section class="ritual">
-  <div class="wrap">
-    <div class="section-title"><span>活動流程</span><h2>本次普渡預計流程</h2></div>
-    <div class="timeline">
-      <div class="step"><div class="num">1</div><h3>設壇與安奉</h3><p>整理壇場、安置供桌、香案、燈燭與各項供品。</p></div>
-      <div class="step"><div class="num">2</div><h3>誦經與祈福</h3><p>由主法者依科儀進行請神、誦經、祈安、超薦與普施。</p></div>
-      <div class="step"><div class="num">3</div><h3>普施與圓滿</h3><p>完成供養、迴向與送聖，祈願參與者闔家平安、福慧增長。</p></div>
-    </div>
-  </div>
-</section>
+<div id="ancestorBox" class="detail-box"><h3>三、超薦祖先資料</h3><div class="twocol"><div><label class="field">祖先姓氏 *</label><input id="ancestorSurname" placeholder="例如：王姓"></div><div><label class="field">堂號（選填）</label><input id="ancestorHall" placeholder="例如：太原堂"></div></div><label class="field">往生者姓名／歷代祖先 *</label><textarea id="ancestorNames" placeholder="例如：王○○（祖父），或填王氏歷代祖先"></textarea><div class="twocol"><div><label class="field">與報名人關係（選填）</label><input id="ancestorRelation" placeholder="例如：祖父"></div><div><label class="field">往生日期（選填）</label><input id="ancestorDeath" placeholder="知道再填"></div></div><label class="field">祖先資料備註（選填）</label><textarea id="ancestorNote"></textarea></div>
 
-<section id="items">
-  <div class="wrap">
-    <div class="section-title"><span>報名項目</span><h2>選擇您想參與的祈福項目</h2></div>
-    <div class="products">
-      <label class="product"><input type="checkbox" class="item" data-name="因果" data-price="1500"><div><b>因果｜每位</b><p>適合希望懺悔往昔、化解阻礙、廣結善緣者。</p></div><span class="price">$1,500</span></label>
-      <label class="product"><input type="checkbox" class="item" data-name="祖先" data-price="1200"><div><b>祖先｜每位</b><p>為歷代祖先追思、超薦、迴向功德。</p></div><span class="price">$1,200</span></label>
-      <label class="product"><input type="checkbox" class="item" data-name="九玄七祖" data-price="1500"><div><b>九玄七祖｜每位</b><p>以家族脈系為對象，祈願祖德流芳、庇蔭後代。</p></div><span class="price">$1,500</span></label>
-      <label class="product"><input type="checkbox" class="item" data-name="平安米24包" data-price="100"><div><b>平安米｜24 包</b><p>普渡後結緣或供信眾帶回，象徵平安、豐足。</p></div><span class="price">$100</span></label>
-      <label class="product"><input type="checkbox" class="item" data-name="贊普一桌" data-price="6000"><div><b>贊普｜每桌</b><p>完整贊普供桌，適合家庭、公司、團體共同參與。</p></div><span class="price">$6,000</span></label>
-    </div>
-  </div>
-</section>
+<div id="nineBox" class="detail-box"><h3>四、九玄七祖資料</h3><div class="twocol"><div><label class="field">祖先姓氏 *</label><input id="nineSurname" placeholder="例如：王姓"></div><div><label class="field">堂號（選填）</label><input id="nineHall" placeholder="例如：太原堂"></div></div><label class="field">家族／祖先說明 *</label><textarea id="nineInfo" placeholder="例如：王氏九玄七祖、歷代祖先"></textarea><label class="field">備註（選填）</label><textarea id="nineNote"></textarea></div>
 
+<div id="riceBox" class="detail-box"><h3>五、平安米數量</h3><div class="qty-row"><div><label class="field">品項</label><input value="平安米" disabled></div><div><label class="field">包數 *</label><input id="riceQty" type="number" min="1" value="1"></div></div></div>
+<div id="tableBox" class="detail-box"><h3>六、贊普桌數</h3><div class="qty-row"><div><label class="field">品項</label><input value="贊普" disabled></div><div><label class="field">桌數 *</label><input id="tableQty" type="number" min="1" value="1"></div></div></div>
 
-<section id="signup">
-  <div class="wrap">
-    <div class="section-title"><span>線上報名</span><h2>填寫完成後，自動複製並前往官方 LINE</h2><p>送出後會自動複製報名內容，接著開啟官方 LINE；請在聊天室長按貼上並傳送。</p></div>
-    <div class="form-layout">
-      <aside class="card sticky">
-        <h3 style="margin-top:0">本次報名摘要</h3>
-        <div id="summary" class="summary">尚未填寫資料。</div>
-        <div id="total" class="total">合計：NT$ 0</div>
-        <p class="hint">按下送出後，系統會複製完整內容並開啟官方 LINE；請在輸入框長按「貼上」後傳送。</p>
-      </aside>
-
-      <form class="card" id="signupForm" onsubmit="sendLine(event)">
-        <div class="twocol">
-          <div><label for="name">姓名／聯絡人 *</label><input id="name" required placeholder="例如：王小明"></div>
-          <div><label for="phone">手機 *</label><input id="phone" required inputmode="tel" placeholder="09xx-xxx-xxx"></div>
-        </div>
-        <div class="twocol">
-          <div><label for="lineName">LINE 顯示名稱</label><input id="lineName" placeholder="方便承辦人核對"></div>
-          <div><label for="people">參加人數</label><input id="people" type="number" min="1" value="1"></div>
-        </div>
-        <label for="target">祈福／超薦對象</label>
-        <textarea id="target" placeholder="例如：闔家姓名、歷代祖先、公司名稱等；不確定可先留白"></textarea>
-
-        <h3>自由贊助</h3>
-        <p class="hint">贊助款將依現場實際需求，運用於帳篷、桌椅、廚師與餐食、供品、飲水、清潔及臨時支出。</p>
-        <div class="sponsor-grid">
-          <label class="sponsor-option"><input type="radio" name="sponsorPreset" value="0" checked>暫不贊助</label>
-          <label class="sponsor-option"><input type="radio" name="sponsorPreset" value="500">隨喜 $500</label>
-          <label class="sponsor-option"><input type="radio" name="sponsorPreset" value="1000">隨喜 $1,000</label>
-          <label class="sponsor-option"><input type="radio" name="sponsorPreset" value="custom">自訂金額</label>
-        </div>
-        <div id="customSponsorWrap" style="display:none"><label for="customSponsor">自訂贊助金額</label><input id="customSponsor" type="number" min="0" step="100" placeholder="請輸入金額"></div>
-
-        <label for="sponsorUse">希望優先贊助用途</label>
-        <select id="sponsorUse">
-          <option>由廟方統籌運用</option><option>帳篷與桌椅</option><option>廚師與餐食</option><option>供品與普施物資</option><option>飲水、清潔與雜支</option>
-        </select>
-        <label for="note">備註</label>
-        <textarea id="note" placeholder="例如：需要收據、匯款末五碼稍後提供、希望承辦人電話聯絡"></textarea>
-
-        <div class="notice">
-          送出前請再次確認姓名、聯絡方式、項目與金額。正式科儀名稱與功德內容，請以主辦單位公告為準。
-        </div>
-        <div class="hero-actions">
-          <button class="btn line" type="submit">複製內容並前往官方 LINE</button>
-          <button class="btn alt" type="button" onclick="copySummary()" style="border:1px solid var(--line)">複製報名摘要</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <b>九龍高層幹部｜中元普渡祈福活動</b><br>
-    聯絡方式、地址、匯款資訊與正式科儀內容，請依主辦單位最新公告為準。
-  </div>
-</footer>
-
-<div class="mobilebar">
-  <a href="#signup" class="btn" style="width:100%">立即報名</a>
-</div>
-
+<h3 style="margin-top:24px">七、自由贊助（選填）</h3><label class="field" for="sponsor">贊助金額</label><input id="sponsor" type="number" min="0" step="1" placeholder="例如：500"><label class="field" for="note">其他備註（選填）</label><textarea id="note" placeholder="匯款末五碼、特殊需求或其他說明"></textarea>
+<div class="submit-area"><button class="btn full" type="submit">📋 複製完整報名資料</button></div>
+<div id="result" class="result"><h3>✅ 報名內容已複製</h3><p>請點下方按鈕前往官方 LINE，進入聊天室後長按輸入框，選擇「貼上」並傳送。</p><a class="btn line full" href="https://lin.ee/u1LZ3VU" target="_blank" rel="noopener">前往混元九龍殿官方 LINE</a></div>
+</form></div></div></section>
+<footer>混元九龍殿｜中元普渡線上報名</footer>
+<div class="mobilebar"><a class="btn" href="#signup">填寫報名</a><a class="btn line" href="https://lin.ee/u1LZ3VU" target="_blank" rel="noopener">官方 LINE</a></div>
 <script>
-  // ===== 可自行修改的活動設定 =====
-  const EVENT_NAME = "九龍高層幹部｜乙巳年中元普渡";
-  // 若有官方 LINE OA，可改成例如：https://lin.ee/xxxxxxx
-  // 目前使用 LINE 分享網址，會把報名摘要帶入 LINE。
-  const LINE_OFFICIAL_URL = "https://lin.ee/u1LZ3VU";
-
-  const els = {
-    items:[...document.querySelectorAll(".item")],
-    form:document.getElementById("signupForm"),
-    summary:document.getElementById("summary"),
-    total:document.getElementById("total"),
-    customWrap:document.getElementById("customSponsorWrap"),
-    customSponsor:document.getElementById("customSponsor")
-  };
-
-  function money(n){ return new Intl.NumberFormat("zh-TW").format(Number(n||0)); }
-  function selectedItems(){
-    return els.items.filter(x=>x.checked).map(x=>({name:x.dataset.name, price:Number(x.dataset.price)}));
-  }
-  function sponsorAmount(){
-    const selected=document.querySelector('input[name="sponsorPreset"]:checked')?.value||"0";
-    return selected==="custom" ? Number(els.customSponsor.value||0) : Number(selected);
-  }
-  function buildSummary(){
-    const items=selectedItems();
-    const subtotal=items.reduce((s,x)=>s+x.price,0);
-    const sponsor=sponsorAmount();
-    const total=subtotal+sponsor;
-    const name=document.getElementById("name").value.trim()||"（未填）";
-    const phone=document.getElementById("phone").value.trim()||"（未填）";
-    const lineName=document.getElementById("lineName").value.trim()||"（未填）";
-    const people=document.getElementById("people").value||"1";
-    const target=document.getElementById("target").value.trim()||"（未填）";
-    const sponsorUse=document.getElementById("sponsorUse").value;
-    const note=document.getElementById("note").value.trim()||"無";
-    const itemText=items.length?items.map(x=>`・${x.name} NT$ ${money(x.price)}`).join("\n"):"・尚未選擇";
-    const text=`【${EVENT_NAME} 報名】\n姓名：${name}\n手機：${phone}\nLINE名稱：${lineName}\n參加人數：${people}\n祈福／超薦對象：${target}\n\n報名項目：\n${itemText}\n\n自由贊助：NT$ ${money(sponsor)}\n贊助用途：${sponsorUse}\n備註：${note}\n\n預計合計：NT$ ${money(total)}`;
-    els.summary.textContent=text;
-    els.total.textContent=`合計：NT$ ${money(total)}`;
-
-    const countEl = document.getElementById("selectedCount");
-    const amountEl = document.getElementById("selectedAmount");
-    if(countEl && amountEl){
-      countEl.textContent = items.length
-        ? `已選 ${items.length} 項${sponsor > 0 ? "＋自由贊助" : ""}`
-        : (sponsor > 0 ? "自由贊助" : "尚未選擇項目");
-      amountEl.textContent = `合計：NT$ ${money(total)}`;
-    }
-
-    return text;
-  }
-  document.querySelectorAll("input,select,textarea").forEach(x=>{
-    x.addEventListener("input",buildSummary);
-    x.addEventListener("change",buildSummary);
-  });
-  document.querySelectorAll('input[name="sponsorPreset"]').forEach(x=>x.addEventListener("change",()=>{
-    els.customWrap.style.display=x.checked&&x.value==="custom"?"block":"none"; buildSummary();
-  }));
-
-  async function copySummary(){
-    const text=buildSummary();
-    try{await navigator.clipboard.writeText(text);alert("已複製報名摘要");}
-    catch(e){prompt("請長按複製以下內容：",text);}
-  }
-  async function sendLine(e){
-    e.preventDefault();
-    if(!els.form.reportValidity()) return;
-    if(selectedItems().length===0 && sponsorAmount()===0){
-      alert("請至少選擇一項報名項目或填寫自由贊助。");
-      return;
-    }
-
-    const text = buildSummary();
-
-    try{
-      await navigator.clipboard.writeText(text);
-    }catch(err){
-      const temp = document.createElement("textarea");
-      temp.value = text;
-      temp.style.position = "fixed";
-      temp.style.opacity = "0";
-      document.body.appendChild(temp);
-      temp.focus();
-      temp.select();
-      document.execCommand("copy");
-      temp.remove();
-    }
-
-    alert(
-      "報名內容已自動複製！
-
-" +
-      "接下來將前往「混元九龍殿官方 LINE」。
-" +
-      "請在聊天室輸入框長按，選擇「貼上」，確認內容無誤後再按傳送。
-
-" +
-      "注意事項：
-" +
-      "1. 傳送完成才算完成登記。
-" +
-      "2. 請勿自行刪除姓名、電話、項目及金額。
-" +
-      "3. 繳費與報名是否成功，以官方 LINE 人員回覆確認為準。"
-    );
-
-    window.location.href = LINE_OFFICIAL_URL;
-  }
-  buildSummary();
+const $=id=>document.getElementById(id);const money=n=>Number(n||0).toLocaleString('zh-TW');
+const items=[...document.querySelectorAll('.item')];
+const mappings={itemCause:'causeBox',itemAncestor:'ancestorBox',itemNine:'nineBox',itemRice:'riceBox',itemTable:'tableBox'};
+function toggleBoxes(){Object.entries(mappings).forEach(([item,box])=>$(box).classList.toggle('show',$(item).checked));}
+function qty(id){return Math.max(1,Number($(id).value||1));}
+function totalAmount(){let total=0;items.forEach(i=>{if(!i.checked)return;let q=1;if(i.id==='itemRice')q=qty('riceQty');if(i.id==='itemTable')q=qty('tableQty');total+=Number(i.dataset.price)*q;});total+=Math.max(0,Number($('sponsor').value||0));return total;}
+function val(id,empty='未填'){const v=$(id)?.value?.trim();return v||empty;}
+function buildText(){const lines=[];lines.push('【混元九龍殿 中元普渡報名】','', '━━━━━━━━━━━━━━','【信徒基本資料】',`姓名：${val('name')}`,`聯絡電話：${val('phone')}`,`LINE顯示名稱：${val('lineName','未提供')}`,'','━━━━━━━━━━━━━━','【報名項目】');let no=0;
+if($('itemCause').checked){no++;lines.push('',`${no}. 因果普渡`,`金額：NT$${money(1500)}`,`祈福姓名：${val('causeName')}`,`出生日期：${val('causeBirth')}（${val('causeCalendar')}）`,`備註：${val('causeNote','無')}`);}
+if($('itemAncestor').checked){no++;lines.push('',`${no}. 超薦祖先`,`金額：NT$${money(1200)}`,`祖先姓氏：${val('ancestorSurname')}`,`堂號：${val('ancestorHall','未填')}`,`往生者姓名／祖先：${val('ancestorNames')}`,`與報名人關係：${val('ancestorRelation','未填')}`,`往生日期：${val('ancestorDeath','未填')}`,`祖先資料備註：${val('ancestorNote','無')}`);}
+if($('itemNine').checked){no++;lines.push('',`${no}. 九玄七祖`,`金額：NT$${money(1500)}`,`祖先姓氏：${val('nineSurname')}`,`堂號：${val('nineHall','未填')}`,`家族／祖先說明：${val('nineInfo')}`,`備註：${val('nineNote','無')}`);}
+if($('itemRice').checked){const q=qty('riceQty');no++;lines.push('',`${no}. 平安米`,`數量：${q} 包`,`單價：NT$100`,`金額：NT$${money(q*100)}`);}
+if($('itemTable').checked){const q=qty('tableQty');no++;lines.push('',`${no}. 贊普`,`數量：${q} 桌`,`單價：NT$6,000`,`金額：NT$${money(q*6000)}`);}
+if(no===0)lines.push('尚未選擇報名項目');const sponsor=Math.max(0,Number($('sponsor').value||0));lines.push('','━━━━━━━━━━━━━━','【自由贊助】',`金額：NT$${money(sponsor)}`,'','【其他備註】',val('note','無'),'','━━━━━━━━━━━━━━','【合計】',`NT$${money(totalAmount())}`,'','請官方 LINE 人員協助確認資料與繳費方式，謝謝。');return lines.join('\n');}
+function update(){toggleBoxes();$('summary').textContent=buildText();$('total').textContent=`合計：NT$${money(totalAmount())}`;}
+function requireWhen(checked,ids,message){if(!checked)return true;for(const id of ids){if(!$(id).value.trim()){alert(message);$(id).focus();return false;}}return true;}
+async function copyText(text){try{await navigator.clipboard.writeText(text);return true}catch(e){const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();return ok;}}
+document.querySelectorAll('input,select,textarea').forEach(el=>{el.addEventListener('input',update);el.addEventListener('change',update)});
+$('form').addEventListener('submit',async e=>{e.preventDefault();if(!$('form').reportValidity())return;if(!items.some(i=>i.checked)&&Number($('sponsor').value||0)<=0){alert('請至少選擇一個報名項目，或填寫自由贊助金額。');return}if(!requireWhen($('itemCause').checked,['causeName','causeBirth'],'因果普渡資料尚未填完整。'))return;if(!requireWhen($('itemAncestor').checked,['ancestorSurname','ancestorNames'],'超薦祖先資料尚未填完整。'))return;if(!requireWhen($('itemNine').checked,['nineSurname','nineInfo'],'九玄七祖資料尚未填完整。'))return;const ok=await copyText(buildText());if(!ok){prompt('請長按複製以下報名內容：',buildText());}$('result').classList.add('show');$('result').scrollIntoView({behavior:'smooth',block:'center'});});
+update();
 </script>
-</body>
-</html>
+</body></html>

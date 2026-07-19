@@ -24,7 +24,7 @@ a{text-decoration:none;color:inherit}
 .topbar{position:sticky;top:0;z-index:50;background:rgba(28,12,36,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(240,207,121,.24)}
 .nav{height:68px;display:flex;align-items:center;justify-content:space-between;color:white}
 .brand{display:flex;align-items:center;gap:10px;font-weight:900}
-.brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid var(--gold2)}
+.brand img{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(240,207,121,.24))}
 .navlinks{display:flex;gap:20px;font-size:14px;color:#eee4ef}
 .navcta,.btn-primary{border:0;border-radius:999px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2a1704;font-weight:900;padding:11px 18px;cursor:pointer;box-shadow:0 8px 24px rgba(184,137,45,.26)}
 .hero{position:relative;overflow:hidden;background:
@@ -42,7 +42,7 @@ a{text-decoration:none;color:inherit}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 .btn-ghost{border:1px solid rgba(255,255,255,.34);border-radius:999px;color:white;padding:10px 18px;font-weight:800}
 .hero-logo{display:grid;place-items:center}
-.hero-logo img{width:min(370px,80vw);aspect-ratio:1/1;object-fit:cover;border-radius:34px;border:1px solid rgba(240,207,121,.45);box-shadow:0 26px 80px rgba(0,0,0,.38)}
+.hero-logo img{width:min(390px,82vw);height:auto;object-fit:contain;filter:drop-shadow(0 0 24px rgba(240,207,121,.28)) drop-shadow(0 28px 60px rgba(0,0,0,.34));animation:logoFloat 5s ease-in-out infinite}@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 .section{padding:72px 0}
 .section.alt{background:#fff}
 .head{text-align:center;max-width:780px;margin:0 auto 34px}
@@ -115,12 +115,18 @@ textarea{min-height:92px;resize:vertical}
 .faq summary{font-weight:900;cursor:pointer}
 .footer{background:var(--deep);color:#eadfeb;padding:38px 0;text-align:center}
 .footer strong{color:var(--gold2)}
+
+.countdown{display:grid;grid-template-columns:repeat(4,minmax(72px,1fr));gap:10px;max-width:520px;margin-top:24px}
+.countdown-box{padding:14px 10px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(240,207,121,.22);text-align:center;backdrop-filter:blur(8px)}
+.countdown-box strong{display:block;font-size:30px;line-height:1;color:var(--gold2)}
+.countdown-box span{font-size:12px;color:#eadfeb}
+.form-hint{margin:12px 0 18px;padding:14px 16px;border-radius:14px;background:#fff8e8;border-left:4px solid var(--gold);color:#6d531f}
 @media(max-width:900px){
  .hero-grid,.meaning{grid-template-columns:1fr}.hero-logo{order:-1}.hero-logo img{width:220px}
  .dates{grid-template-columns:repeat(2,1fr)}.ritual-grid{grid-template-columns:repeat(2,1fr)}
  .process{grid-template-columns:repeat(3,1fr)}.navlinks{display:none}
 }
-@media(max-width:620px){
+@media(max-width:620px){.countdown{grid-template-columns:repeat(2,1fr)}
  .hero{padding-top:48px}.section{padding:54px 0}.dates,.ritual-grid,.grid2,.values{grid-template-columns:1fr}
  .process{grid-template-columns:1fr 1fr}.form-body{padding:16px}.form-top{padding:22px}
  .hero-actions a{width:100%;text-align:center}.summary-box{bottom:4px}
@@ -142,6 +148,12 @@ textarea{min-height:92px;resize:vertical}
    <div class="eyebrow">HUN YUAN JIU LONG DIAN · 2026</div>
    <h1><small>民國115年</small>中元普渡法會</h1>
    <p class="hero-copy">慎終追遠、廣結善緣。以虔敬之心護持法會，為祖先與有緣眾生祈願，亦將這份善念迴向自己與家人。</p>
+   <div class="countdown" aria-label="距離法會倒數">
+    <div class="countdown-box"><strong id="cdDays">--</strong><span>天</span></div>
+    <div class="countdown-box"><strong id="cdHours">--</strong><span>小時</span></div>
+    <div class="countdown-box"><strong id="cdMinutes">--</strong><span>分鐘</span></div>
+    <div class="countdown-box"><strong id="cdSeconds">--</strong><span>秒</span></div>
+   </div>
    <div class="hero-actions"><a class="btn-primary" href="#register">開始線上報名</a><a class="btn-ghost" href="#rituals">先了解各項科儀</a></div>
   </div>
   <div class="hero-logo"><img src="logo.png" alt="混元九龍殿"></div>
@@ -204,7 +216,7 @@ textarea{min-height:92px;resize:vertical}
 <section class="section" id="register">
  <div class="wrap form-shell">
   <div class="form-top"><h2>民國115年中元普渡線上報名</h2><p>所有生辰資料請填「農曆年月日與時辰」。不確定時辰時，可先填「不詳」並向廟方確認。</p></div>
-  <div class="form-body">
+  <div class="form-body"><div class="form-hint">請統一填寫農曆年月日與時辰。資料越完整，廟方整理名冊與疏文時越容易核對；若時辰不詳，可選擇「不詳」。</div>
    <div class="grid2">
     <div class="field"><label>聯絡人姓名 <span class="req">*</span></label><input id="contactName" placeholder="請填真實姓名"><small>方便廟方核對報名資料。</small></div>
     <div class="field"><label>聯絡電話 <span class="req">*</span></label><input id="phone" inputmode="tel" placeholder="例如：0912-345-678"><small>僅用於本次法會聯繫。</small></div>
@@ -245,11 +257,16 @@ textarea{min-height:92px;resize:vertical}
 <script>
 const P={karma:1500,ancestor:1200,lineage:1500,rice:100,offering:6000};
 let ids={karma:0,ancestor:0,lineage:0};
+const yearOptions=()=>{
+ const y=[];for(let i=1912;i<=2026;i++){const roc=i-1911;y.push(`<option value="民國${roc}年">民國${roc}年（${i}）</option>`)}return y.reverse().join('');
+};
+const monthOptions=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','臘月','閏正月','閏二月','閏三月','閏四月','閏五月','閏六月','閏七月','閏八月','閏九月','閏十月','閏冬月','閏臘月'].map(v=>`<option>${v}</option>`).join('');
+const dayOptions=['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'].map(v=>`<option>${v}</option>`).join('');
 const lunarFields=(prefix)=>`
  <div class="grid2">
-  <div class="field"><label>農曆年 <span class="req">*</span></label><input data-f="${prefix}Year" placeholder="例如：辛未年／民國80年"><small>請填農曆年份或干支年。</small></div>
-  <div class="field"><label>農曆月 <span class="req">*</span></label><input data-f="${prefix}Month" placeholder="例如：六月"><small>閏月請註明「閏」。</small></div>
-  <div class="field"><label>農曆日 <span class="req">*</span></label><input data-f="${prefix}Day" placeholder="例如：初五"><small>請勿填國曆日期。</small></div>
+  <div class="field"><label>農曆年 <span class="req">*</span></label><select data-f="${prefix}Year"><option value="">請選擇農曆年</option>${yearOptions()}</select><small>請依農曆出生或往生年份選擇。</small></div>
+  <div class="field"><label>農曆月 <span class="req">*</span></label><select data-f="${prefix}Month"><option value="">請選擇農曆月</option>${monthOptions}</select><small>遇閏月請選擇對應的閏月。</small></div>
+  <div class="field"><label>農曆日 <span class="req">*</span></label><select data-f="${prefix}Day"><option value="">請選擇農曆日</option>${dayOptions}</select><small>請依農曆日期選擇。</small></div>
   <div class="field"><label>時辰 <span class="req">*</span></label><select data-f="${prefix}Time"><option value="">請選擇</option><option>子時（23:00–00:59）</option><option>丑時（01:00–02:59）</option><option>寅時（03:00–04:59）</option><option>卯時（05:00–06:59）</option><option>辰時（07:00–08:59）</option><option>巳時（09:00–10:59）</option><option>午時（11:00–12:59）</option><option>未時（13:00–14:59）</option><option>申時（15:00–16:59）</option><option>酉時（17:00–18:59）</option><option>戌時（19:00–20:59）</option><option>亥時（21:00–22:59）</option><option>不詳</option></select><small>不清楚可選「不詳」。</small></div>
  </div>`;
 function addKarma(){
@@ -293,7 +310,7 @@ function buildText(){
  if(r)l.push('',`【平安米】${r}包 × ${money(P.rice)}＝${money(r*P.rice)}`);
  if(o)l.push('',`【贊普】${o}桌 × ${money(P.offering)}＝${money(o*P.offering)}`);
  if(d)l.push('',`【自由護持】${money(d)}`);
- l.push('',`【總金額】${money(total())}`,`【其他備註】${notes.value||'無'}`,'','※ 請廟方協助確認資料及繳費方式。');
+ l.push('','────────────────────',`【總金額】${money(total())}`,`【其他備註】${notes.value||'無'}`,'','════════════════════','※ 請廟方協助確認資料及繳費方式。');
  return l.join('\n');
 }
 function showPreview(){previewBox.textContent=buildText();previewBox.style.display='block';previewBox.scrollIntoView({behavior:'smooth',block:'center'})}
@@ -302,6 +319,20 @@ async function copyText(){
  const t=buildText();try{await navigator.clipboard.writeText(t);alert('已複製完整報名資料，請開啟官方LINE貼上傳送。')}catch(e){showPreview();alert('瀏覽器無法自動複製，已顯示預覽內容，請長按複製。')}
 }
 function jumpService(s){document.querySelector(`[data-service="${s}"]`).open=true;document.querySelector(`[data-service="${s}"]`).scrollIntoView({behavior:'smooth',block:'center'})}
+
+function updateCountdown(){
+ const target=new Date('2026-09-05T09:00:00+08:00').getTime();
+ const now=Date.now();let diff=Math.max(0,target-now);
+ const d=Math.floor(diff/86400000);diff%=86400000;
+ const h=Math.floor(diff/3600000);diff%=3600000;
+ const m=Math.floor(diff/60000);const s=Math.floor((diff%60000)/1000);
+ if(document.getElementById('cdDays')){
+  cdDays.textContent=d;cdHours.textContent=String(h).padStart(2,'0');
+  cdMinutes.textContent=String(m).padStart(2,'0');cdSeconds.textContent=String(s).padStart(2,'0');
+ }
+}
+updateCountdown();setInterval(updateCountdown,1000);
+
 addKarma();updateTotal();
 </script>
 </body>

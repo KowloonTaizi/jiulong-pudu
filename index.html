@@ -111,6 +111,25 @@ textarea{min-height:92px;resize:vertical}
 .line{background:#06c755;color:white}
 .preview{background:white;color:var(--purple)}
 .preview-box{display:none;margin-top:18px;padding:18px;border-radius:16px;background:#fffdf7;border:1px solid var(--line);white-space:pre-wrap}
+
+.modal-backdrop{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(15,5,20,.78);backdrop-filter:blur(7px)}
+.modal-backdrop.show{display:flex}
+.modal-card{width:min(520px,100%);max-height:92vh;overflow:auto;background:#fffefb;border:1px solid #eadfce;border-radius:24px;box-shadow:0 28px 90px rgba(0,0,0,.38);padding:24px}
+.modal-icon{width:62px;height:62px;margin:0 auto 10px;display:grid;place-items:center;border-radius:50%;background:#edf9f1;color:#07863d;font-size:32px;font-weight:900}
+.modal-card h3{text-align:center;font-size:27px;margin:6px 0;color:var(--purple)}
+.modal-warning{text-align:center;padding:10px 12px;border-radius:12px;background:#fff2da;color:#7d4a00;font-weight:900}
+.modal-steps{margin:16px 0;padding:0;list-style:none;counter-reset:lineStep}
+.modal-steps li{counter-increment:lineStep;display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+.modal-steps li:before{content:counter(lineStep);flex:0 0 28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--purple);color:white;font-weight:900}
+.modal-check{display:flex;align-items:flex-start;gap:10px;padding:13px;border-radius:13px;background:#f8f3fa;border:1px solid #e1d3e6;font-weight:800}
+.modal-check input{width:20px;height:20px;margin-top:3px;accent-color:var(--purple)}
+.modal-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:10px;margin-top:16px}
+.modal-actions button{border:0;border-radius:13px;padding:13px 12px;font-weight:900;cursor:pointer}
+.modal-back{background:#eee8ef;color:var(--purple)}
+.modal-go{background:#06c755;color:white;opacity:.45}
+.modal-go.enabled{opacity:1}
+.copy-fallback{display:none;margin-top:12px;padding:12px;border-radius:12px;background:#fff1ef;color:#8a2d24;font-weight:800}
+@media(max-width:520px){.modal-card{padding:20px 16px}.modal-actions{grid-template-columns:1fr}.modal-go{order:-1}}
 .faq details{background:white;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px}
 .faq summary{font-weight:900;cursor:pointer}
 .footer{background:var(--deep);color:#eadfeb;padding:38px 0;text-align:center}
@@ -208,7 +227,7 @@ textarea{min-height:92px;resize:vertical}
  <div class="wrap">
   <div class="head"><div class="kicker">REGISTRATION FLOW</div><h2>報名流程</h2></div>
   <div class="process">
-   <div class="step"><span>1</span>了解科儀</div><div class="step"><span>2</span>選擇項目</div><div class="step"><span>3</span>填寫農曆資料</div><div class="step"><span>4</span>複製內容至LINE</div><div class="step"><span>5</span>依廟方通知繳費</div>
+   <div class="step"><span>1</span>了解科儀</div><div class="step"><span>2</span>選擇項目</div><div class="step"><span>3</span>填寫農曆資料</div><div class="step"><span>4</span>確認並傳送至LINE</div><div class="step"><span>5</span>依廟方通知繳費</div>
   </div>
  </div>
 </section>
@@ -234,8 +253,8 @@ textarea{min-height:92px;resize:vertical}
    <div class="field" style="margin-top:18px"><label>其他備註</label><textarea id="notes" placeholder="特殊需求、資料不詳或希望廟方協助確認的內容"></textarea></div>
 
    <div class="summary-box">
-    <div class="summary-row"><div><div>目前登記金額</div><div style="font-size:13px;color:#d8cbd9">按一次即可複製內容並開啟LINE</div></div><div class="total" id="totalText">NT$0</div></div>
-    <div class="actions"><button class="preview" onclick="showPreview()">預覽報名內容</button><button class="line" onclick="copyAndOpenLine()">複製資料並開啟官方LINE</button></div>
+    <div class="summary-row"><div><div>目前登記金額</div><div style="font-size:13px;color:#d8cbd9">確認後複製資料，再依指示前往LINE</div></div><div class="total" id="totalText">NT$0</div></div>
+    <div class="actions"><button class="preview" onclick="showPreview()">預覽報名內容</button><button class="line" onclick="copyAndOpenLine()">確認資料並前往官方LINE</button></div>
    </div>
    <pre class="preview-box" id="previewBox"></pre>
   </div>
@@ -248,9 +267,32 @@ textarea{min-height:92px;resize:vertical}
   <details><summary>為什麼資料一定要填農曆年月日與時辰？</summary><p>廟方依傳統科儀整理疏文與名冊時，會使用農曆生辰資料辨識登記對象。請盡量完整填寫；時辰不清楚可先填「不詳」，再由廟方協助確認。</p></details>
   <details><summary>不確定自己需要報哪一項怎麼辦？</summary><p>想為自己祈福可考慮因果普渡；想專名追思已故親人可選超薦祖先；不清楚歷代祖先姓名、希望整體迴向家族先祖，可選九玄七祖。仍不確定時，將需求傳給官方LINE詢問即可。</p></details>
   <details><summary>自由護持一定要捐嗎？</summary><p>不一定。自由護持完全隨喜、自願、量力而為，不影響其他登記項目。真誠善念比金額更重要，請勿勉強。</p></details>
-  <details><summary>填完表單就算完成報名嗎？</summary><p>填寫完成後，按「複製資料並開啟官方LINE」，系統會先複製完整內容，再直接跳轉官方LINE；進入聊天室後只要長按輸入框貼上並送出。待廟方確認內容與繳費方式後，才算完成報名。</p></details>
+  <details><summary>填完表單就算完成報名嗎？</summary><p>填寫完成後，按「確認資料並前往官方LINE」，系統會先複製完整內容並顯示操作提醒。請閱讀後前往官方LINE，在聊天室輸入欄長按「貼上」並按下傳送。廟方收到資料並確認後，才算完成報名。</p></details>
  </div>
 </section>
+
+
+<div class="modal-backdrop" id="lineGuideModal" role="dialog" aria-modal="true" aria-labelledby="lineGuideTitle">
+ <div class="modal-card">
+  <div class="modal-icon">✓</div>
+  <h3 id="lineGuideTitle">報名資料已複製</h3>
+  <div class="modal-warning">⚠️ 目前尚未完成報名</div>
+  <p>接下來將開啟「混元九龍殿官方 LINE」，請依照以下步驟操作：</p>
+  <ol class="modal-steps">
+   <li>進入官方 LINE 聊天室。</li>
+   <li>長按下方訊息輸入欄位。</li>
+   <li>點選「貼上」。</li>
+   <li>確認資料後按下「傳送」。</li>
+  </ol>
+  <p><strong>廟方收到資料並確認後，才算完成報名。</strong></p>
+  <label class="modal-check"><input type="checkbox" id="lineGuideAgree" onchange="toggleLineGuideButton()"><span>我已了解，進入 LINE 後需長按輸入欄貼上資料並傳送。</span></label>
+  <div class="copy-fallback" id="copyFallback">手機瀏覽器未允許自動複製。請返回頁面查看完整內容並手動複製。</div>
+  <div class="modal-actions">
+   <button class="modal-back" onclick="closeLineGuide()">返回檢查資料</button>
+   <button class="modal-go" id="lineGuideGo" onclick="openOfficialLine()" disabled>我已了解，前往官方 LINE</button>
+  </div>
+ </div>
+</div>
 
 <footer class="footer"><div class="wrap"><strong>混元九龍殿</strong><br>民國115年中元普渡法會｜廣結善緣・慎終追遠<br><small>本網站內容為民間信仰科儀介紹，不構成對健康、財運或人生結果的保證。</small></div></footer>
 
@@ -329,20 +371,40 @@ async function copyAndOpenLine(){
   area.value=text;
   area.setAttribute('readonly','');
   area.style.position='fixed';
-  area.style.opacity='0';
+  area.style.left='-9999px';
   document.body.appendChild(area);
   area.select();
   area.setSelectionRange(0,area.value.length);
   try{copied=document.execCommand('copy')}catch(e){copied=false}
   area.remove();
  }
+ previewBox.textContent=text;
  if(!copied){
-  previewBox.textContent=text;
   previewBox.style.display='block';
-  alert('手機瀏覽器未允許自動複製，已顯示完整內容，請長按複製後再貼到LINE。');
-  return;
+  previewBox.scrollIntoView({behavior:'smooth',block:'center'});
+  document.getElementById('copyFallback').style.display='block';
+  document.getElementById('lineGuideTitle').textContent='請先手動複製報名資料';
+ }else{
+  document.getElementById('copyFallback').style.display='none';
+  document.getElementById('lineGuideTitle').textContent='報名資料已複製';
  }
- // 在同一次點擊流程中直接跳轉，iPhone Safari 較不容易阻擋。
+ document.getElementById('lineGuideAgree').checked=false;
+ toggleLineGuideButton();
+ document.getElementById('lineGuideModal').classList.add('show');
+ document.body.style.overflow='hidden';
+}
+function toggleLineGuideButton(){
+ const agree=document.getElementById('lineGuideAgree');
+ const btn=document.getElementById('lineGuideGo');
+ btn.disabled=!agree.checked;
+ btn.classList.toggle('enabled',agree.checked);
+}
+function closeLineGuide(){
+ document.getElementById('lineGuideModal').classList.remove('show');
+ document.body.style.overflow='';
+}
+function openOfficialLine(){
+ if(!document.getElementById('lineGuideAgree').checked)return;
  window.location.href='https://lin.ee/u1LZ3VU';
 }
 function jumpService(s){document.querySelector(`[data-service="${s}"]`).open=true;document.querySelector(`[data-service="${s}"]`).scrollIntoView({behavior:'smooth',block:'center'})}

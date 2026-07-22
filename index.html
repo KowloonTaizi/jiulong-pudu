@@ -140,6 +140,17 @@ textarea{min-height:92px;resize:vertical}
 .countdown-box strong{display:block;font-size:30px;line-height:1;color:var(--gold2)}
 .countdown-box span{font-size:12px;color:#eadfeb}
 .form-hint{margin:12px 0 18px;padding:14px 16px;border-radius:14px;background:#fff8e8;border-left:4px solid var(--gold);color:#6d531f}
+.solar-helper{margin:0 0 16px;padding:16px;border:2px solid #d9c0e2;border-radius:16px;background:linear-gradient(135deg,#fbf5fd,#fffaf0)}
+.solar-helper-title{font-size:18px;font-weight:900;color:var(--purple);margin-bottom:4px}
+.solar-helper p{margin:0 0 10px;color:var(--muted)}
+.solar-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}
+.solar-row button{border:0;border-radius:12px;padding:12px 16px;background:var(--purple);color:white;font-weight:900;cursor:pointer;white-space:nowrap}
+.solar-result{display:none;margin-top:10px;padding:10px 12px;border-radius:10px;background:#edf9f1;color:#08753a;font-weight:900}
+.solar-result.show{display:block}
+.big-text-toggle{position:fixed;right:14px;bottom:14px;z-index:80;border:0;border-radius:999px;padding:11px 15px;background:var(--deep);color:white;box-shadow:0 8px 28px rgba(0,0,0,.25);font-weight:900;cursor:pointer}
+body.big-text{font-size:118%}
+body.big-text input,body.big-text select,body.big-text textarea,body.big-text button{font-size:1em}
+@media(max-width:620px){.solar-row{grid-template-columns:1fr}.solar-row button{width:100%}}
 @media(max-width:900px){
  .hero-grid,.meaning{grid-template-columns:1fr}.hero-logo{order:-1}.hero-logo img{width:220px}
  .dates{grid-template-columns:repeat(2,1fr)}.ritual-grid{grid-template-columns:repeat(2,1fr)}
@@ -234,8 +245,8 @@ textarea{min-height:92px;resize:vertical}
 
 <section class="section" id="register">
  <div class="wrap form-shell">
-  <div class="form-top"><h2>民國115年中元普渡線上報名</h2><p>所有生辰資料請填「農曆年月日與時辰」。不確定時辰時，可先填「不詳」並向廟方確認。</p></div>
-  <div class="form-body"><div class="form-hint">請統一填寫農曆年月日與時辰。資料越完整，廟方整理名冊與疏文時越容易核對；若時辰不詳，可選擇「不詳」。</div>
+  <div class="form-top"><h2>民國115年中元普渡線上報名</h2><p>不知道農曆生日也沒關係，可輸入國曆日期由系統自動換算；不確定時辰可選「不詳」。</p></div>
+  <div class="form-body"><div class="form-hint">不知道農曆日期時，請在各筆資料中輸入國曆日期並點選「自動換算農曆」。系統會自動帶入農曆年、月、日；若時辰不詳，可選擇「不詳」。</div>
    <div class="grid2">
     <div class="field"><label>聯絡人姓名 <span class="req">*</span></label><input id="contactName" placeholder="請填真實姓名"><small>方便廟方核對報名資料。</small></div>
     <div class="field"><label>聯絡電話 <span class="req">*</span></label><input id="phone" inputmode="tel" placeholder="例如：0912-345-678"><small>僅用於本次法會聯繫。</small></div>
@@ -264,7 +275,8 @@ textarea{min-height:92px;resize:vertical}
 <section class="section alt faq" id="faq">
  <div class="wrap">
   <div class="head"><div class="kicker">FAQ</div><h2>常見問題</h2></div>
-  <details><summary>為什麼資料一定要填農曆年月日與時辰？</summary><p>廟方依傳統科儀整理疏文與名冊時，會使用農曆生辰資料辨識登記對象。請盡量完整填寫；時辰不清楚可先填「不詳」，再由廟方協助確認。</p></details>
+  <details><summary>不知道自己的農曆生日怎麼辦？</summary><p>請在報名資料中輸入國曆生日，再點選「自動換算農曆」，系統會自動填入農曆年、月、日。時辰不清楚可選擇「不詳」。</p></details>
+  <details><summary>為什麼資料要填農曆年月日與時辰？</summary><p>廟方依傳統科儀整理疏文與名冊時，會使用農曆生辰資料辨識登記對象。請盡量完整填寫；時辰不清楚可先填「不詳」，再由廟方協助確認。</p></details>
   <details><summary>不確定自己需要報哪一項怎麼辦？</summary><p>想為自己祈福可考慮因果普渡；想專名追思已故親人可選超薦祖先；不清楚歷代祖先姓名、希望整體迴向家族先祖，可選九玄七祖。仍不確定時，將需求傳給官方LINE詢問即可。</p></details>
   <details><summary>自由護持一定要捐嗎？</summary><p>不一定。自由護持完全隨喜、自願、量力而為，不影響其他登記項目。真誠善念比金額更重要，請勿勉強。</p></details>
   <details><summary>填完表單就算完成報名嗎？</summary><p>填寫完成後，按「確認資料並前往官方LINE」，系統會先複製完整內容並顯示操作提醒。請閱讀後前往官方LINE，在聊天室輸入欄長按「貼上」並按下傳送。廟方收到資料並確認後，才算完成報名。</p></details>
@@ -294,6 +306,8 @@ textarea{min-height:92px;resize:vertical}
  </div>
 </div>
 
+<button class="big-text-toggle" type="button" onclick="toggleBigText()">🔎 大字模式</button>
+
 <footer class="footer"><div class="wrap"><strong>混元九龍殿</strong><br>民國115年中元普渡法會｜廣結善緣・慎終追遠<br><small>本網站內容為民間信仰科儀介紹，不構成對健康、財運或人生結果的保證。</small></div></footer>
 
 <script>
@@ -305,12 +319,53 @@ const yearOptions=()=>{
 const monthOptions=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','臘月','閏正月','閏二月','閏三月','閏四月','閏五月','閏六月','閏七月','閏八月','閏九月','閏十月','閏冬月','閏臘月'].map(v=>`<option>${v}</option>`).join('');
 const dayOptions=['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'].map(v=>`<option>${v}</option>`).join('');
 const lunarFields=(prefix)=>`
+ <div class="solar-helper">
+  <div class="solar-helper-title">📅 不知道農曆日期？輸入國曆自動換算</div>
+  <p>請選擇身分證或戶籍資料上的國曆日期，系統會自動填入下方農曆年月日。</p>
+  <div class="solar-row">
+   <div class="field"><label>國曆日期</label><input type="date" data-f="${prefix}Solar" min="1912-01-01" max="2026-12-31"></div>
+   <button type="button" onclick="convertSolarToLunar(this,'${prefix}')">自動換算農曆</button>
+  </div>
+  <div class="solar-result" data-lunar-result>換算完成</div>
+ </div>
  <div class="grid2">
-  <div class="field"><label>農曆年 <span class="req">*</span></label><select data-f="${prefix}Year"><option value="">請選擇農曆年</option>${yearOptions()}</select><small>請依農曆出生或往生年份選擇。</small></div>
-  <div class="field"><label>農曆月 <span class="req">*</span></label><select data-f="${prefix}Month"><option value="">請選擇農曆月</option>${monthOptions}</select><small>遇閏月請選擇對應的閏月。</small></div>
-  <div class="field"><label>農曆日 <span class="req">*</span></label><select data-f="${prefix}Day"><option value="">請選擇農曆日</option>${dayOptions}</select><small>請依農曆日期選擇。</small></div>
+  <div class="field"><label>農曆年 <span class="req">*</span></label><select data-f="${prefix}Year"><option value="">請選擇農曆年</option>${yearOptions()}</select><small>可手動選擇，也可由上方國曆自動換算。</small></div>
+  <div class="field"><label>農曆月 <span class="req">*</span></label><select data-f="${prefix}Month"><option value="">請選擇農曆月</option>${monthOptions}</select><small>遇閏月會自動選擇對應閏月。</small></div>
+  <div class="field"><label>農曆日 <span class="req">*</span></label><select data-f="${prefix}Day"><option value="">請選擇農曆日</option>${dayOptions}</select><small>請確認換算結果是否正確。</small></div>
   <div class="field"><label>時辰 <span class="req">*</span></label><select data-f="${prefix}Time"><option value="">請選擇</option><option>子時（23:00–00:59）</option><option>丑時（01:00–02:59）</option><option>寅時（03:00–04:59）</option><option>卯時（05:00–06:59）</option><option>辰時（07:00–08:59）</option><option>巳時（09:00–10:59）</option><option>午時（11:00–12:59）</option><option>未時（13:00–14:59）</option><option>申時（15:00–16:59）</option><option>酉時（17:00–18:59）</option><option>戌時（19:00–20:59）</option><option>亥時（21:00–22:59）</option><option>不詳</option></select><small>不清楚可選「不詳」。</small></div>
  </div>`;
+const lunarDayNames=['','初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+function setSelectValue(select,value){
+ const option=[...select.options].find(o=>o.value===value||o.textContent===value);
+ if(!option)return false;select.value=option.value;return true;
+}
+function convertSolarToLunar(btn,prefix){
+ const entry=btn.closest('.entry');
+ const dateInput=entry.querySelector(`[data-f="${prefix}Solar"]`);
+ const result=entry.querySelector('[data-lunar-result]');
+ if(!dateInput.value){alert('請先選擇國曆日期。');dateInput.focus();return;}
+ try{
+  const [y,m,d]=dateInput.value.split('-').map(Number);
+  const date=new Date(Date.UTC(y,m-1,d,12));
+  const formatter=new Intl.DateTimeFormat('zh-TW-u-ca-chinese',{year:'numeric',month:'long',day:'numeric',timeZone:'Asia/Taipei'});
+  const parts=formatter.formatToParts(date);
+  const relatedYear=Number(parts.find(x=>x.type==='relatedYear')?.value||y);
+  let lunarMonth=parts.find(x=>x.type==='month')?.value||'';
+  const lunarDay=Number(parts.find(x=>x.type==='day')?.value||0);
+  lunarMonth=lunarMonth.replace('月月','月');
+  const rocYear=`民國${relatedYear-1911}年`;
+  const dayName=lunarDayNames[lunarDay]||'';
+  const okYear=setSelectValue(entry.querySelector(`[data-f="${prefix}Year"]`),rocYear);
+  const okMonth=setSelectValue(entry.querySelector(`[data-f="${prefix}Month"]`),lunarMonth);
+  const okDay=setSelectValue(entry.querySelector(`[data-f="${prefix}Day"]`),dayName);
+  if(!okYear||!okMonth||!okDay)throw new Error('conversion mapping failed');
+  result.textContent=`✅ 已換算：${rocYear} ${lunarMonth}${dayName}`;
+  result.classList.add('show');
+ }catch(err){
+  console.error(err);
+  alert('此裝置暫時無法自動換算，請手動選擇農曆日期或聯絡廟方協助。');
+ }
+}
 function addKarma(){
  const n=++ids.karma,el=document.createElement('div');el.className='entry';el.dataset.type='karma';
  el.innerHTML=`<button class="remove" onclick="removeEntry(this)">移除</button><div class="entry-title">因果普渡對象 ${n}</div>
@@ -408,6 +463,12 @@ function openOfficialLine(){
  window.location.href='https://lin.ee/u1LZ3VU';
 }
 function jumpService(s){document.querySelector(`[data-service="${s}"]`).open=true;document.querySelector(`[data-service="${s}"]`).scrollIntoView({behavior:'smooth',block:'center'})}
+
+function toggleBigText(){
+ document.body.classList.toggle('big-text');
+ localStorage.setItem('jiulongBigText',document.body.classList.contains('big-text')?'1':'0');
+}
+if(localStorage.getItem('jiulongBigText')==='1')document.body.classList.add('big-text');
 
 function updateCountdown(){
  const target=new Date('2026-09-05T09:00:00+08:00').getTime();
